@@ -1,0 +1,24 @@
+@import "../../styles/veriables";
+
+.root {
+  .wrapper {
+    @include flex-center-between;
+
+    height: $height-header;
+  }
+
+  .logo {
+    @include flex-center-between;
+    gap: 20px;
+    span {
+      color: gray;
+    }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 4px;
+      font-weight: 700;
+      color: black;
+      text-transform: uppercase;
+    }
+  }
+}

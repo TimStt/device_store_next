@@ -1,0 +1,49 @@
+@import "../../styles/veriables";
+
+.root {
+  @include flex-center-between;
+  flex-direction: column;
+  max-width: 280px;
+  width: 100%;
+  border-radius: 40px;
+  border: 1px solid #f3f3f3;
+  padding: 20px;
+  transition: all 0.5s;
+  text-align: center;
+  &:hover {
+    box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.05);
+    scale: 1;
+  }
+
+  h2 {
+    font-size: 17px;
+    margin-block: 20px;
+    font-weight: 500;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.3em;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .bottom {
+    margin-block: 20px;
+    @include flex-center-between;
+    width: 100%;
+
+    button {
+      border: 1px solid #bbbbbb;
+      border-radius: 5px;
+      padding: 2px;
+
+      svg {
+        display: block;
+      }
+    }
+  }
+}

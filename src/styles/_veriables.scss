@@ -1,0 +1,21 @@
+$container-max-width: 1530px;
+$container-padding-x: 40px;
+
+$color-main: #d3d3d3;
+$color-gray-a1: #a1a1a1;
+$color-black-18: #1a1818;
+
+$font-size-h1: 38px;
+$height-header: 120px;
+
+@mixin flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

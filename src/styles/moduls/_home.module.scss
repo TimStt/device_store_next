@@ -1,0 +1,15 @@
+@import "../veriables";
+.root {
+  margin-block: 90px;
+  h1 {
+    font-size: $font-size-h1;
+    margin-bottom: 70px;
+  }
+
+  .catalog {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-items: center;
+    gap: 20px;
+  }
+}
