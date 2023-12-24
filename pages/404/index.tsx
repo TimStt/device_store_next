@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import style from "./_404.module.scss";
 
-function NotFound() {
+const NotFound: React.FC = () => {
   return (
     <section className={style.root}>
       <div className="container">
@@ -15,6 +15,6 @@ function NotFound() {
       </div>
     </section>
   );
-}
+};
 
 export default NotFound;

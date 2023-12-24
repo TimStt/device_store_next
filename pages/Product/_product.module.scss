@@ -1,0 +1,100 @@
+@import "../../src/styles/veriables";
+.root {
+  @include flex-center-center;
+  height: calc((100vh) - $height-header);
+  position: relative;
+
+  .blocks {
+    @include flex-center-between;
+    img {
+      max-width: 400px;
+      transition: all 0.5s;
+      margin: 0 auto;
+      &:hover {
+        scale: (1.2);
+      }
+    }
+    .info {
+      display: flex;
+      /* justify-content: space-between; */
+      /* align-items: center; */
+      flex-direction: column;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+      gap: 28px;
+      max-width: 800px;
+
+      .aside {
+        display: flex;
+        /* gap: 21px; */
+        width: 100%;
+        /* padding: 16px 20px 20px; */
+        /* border-radius: 16px; */
+        /* box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08); */
+        /* flex-direction: column; */
+        align-items: center;
+        /* width: max-content; */
+        height: max-content;
+        justify-content: space-between;
+        span {
+          font-size: 24px;
+          font-weight: 600;
+        }
+        button {
+          @include button;
+        }
+      }
+      .rating {
+        @include flex-center;
+        gap: 15px;
+        $colorValue: rgb(92, 210, 92);
+        width: max-content;
+        height: max-content;
+        p {
+          font-size: 20px;
+          font-weight: 500;
+        }
+
+        .value {
+          font-size: 27px;
+          font-weight: 700;
+          color: $colorValue;
+        }
+      }
+    }
+  }
+  .bottom {
+    @include flex-center;
+
+    gap: 100px;
+
+    position: absolute;
+    top: calc(100% - 100px);
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    a {
+      display: block;
+      @include button(
+        $color-main,
+        $color-black-18,
+        $color-black-18,
+        $color-main
+      );
+      width: max-content;
+
+      border-color: $color-gray-a1;
+    }
+    .fix {
+      svg {
+        margin-left: 20px;
+      }
+      &:hover {
+        svg {
+          fill: $color-main;
+        }
+      }
+    }
+  }
+}

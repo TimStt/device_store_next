@@ -1,0 +1,31 @@
+@import "../../styles/veriables";
+.background {
+  height: 100vh;
+  background-color: $color-main;
+  @include flex-center-center;
+
+  .window {
+    @include flex-center-between;
+    margin: auto;
+    max-width: 1100px;
+    padding: 33px 25px;
+    width: 100%;
+    border-radius: 14px;
+    height: auto;
+    box-shadow: 0px 15px 77px rgb(206 204 204 / 50%);
+
+    .img {
+      width: 100%;
+      flex: 1;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .auth {
+      flex: 1;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 @import "../../styles/veriables";
 
 .root {
+  border-bottom: 1px solid $color-main;
   .wrapper {
     @include flex-center-between;
 
@@ -8,17 +9,20 @@
   }
 
   .logo {
+    @include logo;
+  }
+
+  .nav,
+  .nav a {
     @include flex-center-between;
-    gap: 20px;
-    span {
-      color: gray;
+    gap: 40px;
+    a {
+      gap: 15px;
     }
-    h2 {
-      font-size: 20px;
-      margin-bottom: 4px;
-      font-weight: 700;
-      color: black;
-      text-transform: uppercase;
+    span {
+      font-size: 17px;
+      font-weight: 400;
+      color: $color-black-18;
     }
   }
 }

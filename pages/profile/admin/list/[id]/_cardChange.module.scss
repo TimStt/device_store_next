@@ -1,0 +1,9 @@
+@import "../../../../../src/styles/veriables";
+
+.root {
+  @include flex-column;
+  gap: 20px;
+
+  .img__block {
+  }
+}

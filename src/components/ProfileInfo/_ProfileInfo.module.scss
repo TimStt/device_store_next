@@ -1,0 +1,16 @@
+@import "../../src/styles/veriables";
+
+.root {
+  @include flex-column;
+  gap: 20px;
+
+  .groupInfo {
+    label {
+      margin-right: 30px;
+    }
+  }
+}
+
+.label {
+  font-weight: 600;
+}

@@ -7,15 +7,20 @@ import { Rating } from "@mui/material";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { DevicesTypes } from "@/types";
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
-const Card: React.FC<DevicesTypes> = ({ title, price, rating, image }) => {
+const Card: React.FC<DevicesTypes> = (devices) => {
+  const { id, title, price, rating, image } = devices || {};
+  const { rate } = rating || {};
   return (
     <article className={style.root}>
-      <Image src={image} alt="sdsds" width={150} height={150} />
+      <Link href={`/product/${id}`}>
+        <Image src={image} alt="sdsds" width={180} height={150} />
+      </Link>
       <h2>{title}</h2>
-      <Rating name="text-feedback" value={rating.rate} readOnly />
+      <Rating name="text-feedback" value={rate} readOnly />
       <div className={style.bottom}>
-        <span className={style.price}>{price} $ </span>{" "}
+        <span className={style.price}>{price} ₽ </span>{" "}
         <button>
           <Plus size={30} color="#D3D3D3" />
         </button>
