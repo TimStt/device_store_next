@@ -3,15 +3,26 @@ import React from "react";
 import Image from "next/image";
 import style from "./_card.module.scss";
 import { Rating } from "@mui/material";
-
+import { useDispatch, useSelector } from "react-redux";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { DevicesTypes } from "@/types";
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import {
+  addItem,
+  selectBasket,
+  selectProductById,
+} from "@/src/redux/slice/basketSlice";
 
 const Card: React.FC<DevicesTypes> = (devices) => {
+  const dispatch = useDispatch();
   const { id, title, price, rating, image } = devices || {};
   const { rate } = rating || {};
+
+  const busketProduct = useSelector(selectProductById(id));
+
+  // const busketProduct = useSelector(selectProductById(id));
+
   return (
     <article className={style.root}>
       <Link href={`/product/${id}`}>
@@ -21,8 +32,12 @@ const Card: React.FC<DevicesTypes> = (devices) => {
       <Rating name="text-feedback" value={rate} readOnly />
       <div className={style.bottom}>
         <span className={style.price}>{price} ₽ </span>{" "}
-        <button>
+        <button
+          className={style.addBtn}
+          onClick={() => dispatch(addItem(devices))}
+        >
           <Plus size={30} color="#D3D3D3" />
+          {busketProduct?.count}
         </button>
       </div>
     </article>

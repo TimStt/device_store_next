@@ -4,6 +4,8 @@ import Image from "next/image";
 import { CircleUserRound, ShoppingBasket } from "lucide-react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useSelector } from "react-redux";
+import { selectBasket } from "@/src/redux/slice/basketSlice";
 
 const profile = (href: string, value: string) => {
   return (
@@ -14,12 +16,14 @@ const profile = (href: string, value: string) => {
   );
 };
 
-const user = () => {
+const user = (totalCount: number) => {
   return (
     <>
       <Link href="/basket">
         <ShoppingBasket color="#9B9B9B" size={26} />
-        <span>Корзина</span>
+        <span>
+          Корзина <b>{totalCount ? totalCount : ""}</b>
+        </span>
       </Link>
       {profile("/profile", "Профиль")}
     </>
@@ -29,6 +33,7 @@ const ghost = () => profile("/login", "Войти");
 
 const Header: React.FC = () => {
   const { data: session } = useSession();
+  const { totalCount } = useSelector(selectBasket);
   return (
     <header className={style.root}>
       <div className="container">
@@ -42,7 +47,9 @@ const Header: React.FC = () => {
               </div>
             </div>
           </Link>
-          <nav className={style.nav}>{session ? user() : ghost()}</nav>
+          <nav className={style.nav}>
+            {session ? user(totalCount) : ghost()}
+          </nav>
         </div>
       </div>
     </header>

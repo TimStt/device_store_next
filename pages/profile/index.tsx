@@ -8,7 +8,7 @@ import Layout from "./Layout";
 import { usePathname } from "next/navigation";
 import Adress from "./admin";
 import Image from "next/image";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import axios from "axios";
 import Loading from "../loading";
 
@@ -22,6 +22,9 @@ const Profile: React.FC<{ user: UserType }> = ({ user }) => {
     <Suspense fallback={<Loading />}>
       <Layout>
         <ProfileInfo user={user} />
+        <button className={style.signOut} onClick={() => signOut()}>
+          Выйти из аккаунта
+        </button>
       </Layout>
     </Suspense>
   );
@@ -31,14 +34,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const session = await getSession({ req });
     // const id = 1;
 
-    if (!session) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    }
     let user = session?.user;
     // const { data } = await axios(`https://fakestoreapi.com/users/${user?.id}`);
 

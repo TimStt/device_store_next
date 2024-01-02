@@ -1,19 +1,19 @@
-import { DevicesTypes, stateProductFetchTypes } from "@/types";
+import { stateProductsFetchTypes } from "@/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const productfetch = createAsyncThunk(
-  "product/fetchDeviceProduct",
-  async ({ id }: { id?: number } = {}) => {
-    const API_URL = `https://fakestoreapi.com/products${id ? `/${id}` : ``}`;
+export const productsfetch = createAsyncThunk(
+  "products/fetchDeviceProduct",
+  async () => {
+    const API_URL = `https://6555201463cafc694fe778bf.mockapi.io/devices`;
     const { data } = await axios.get(API_URL);
 
     return data;
   }
 );
 
-const initialState: stateProductFetchTypes = {
+const initialState: stateProductsFetchTypes = {
   products: [],
   status: "loading",
 };
@@ -28,17 +28,17 @@ export const productInfoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(productfetch.fulfilled, (state, action) => {
+      .addCase(productsfetch.fulfilled, (state, action) => {
         state.products = action.payload;
         state.status = "success";
         console.log("успешно");
       })
-      .addCase(productfetch.pending, (state) => {
+      .addCase(productsfetch.pending, (state) => {
         state.products = [];
         state.status = "loading";
         console.log("загрузка");
       })
-      .addCase(productfetch.rejected, (state) => {
+      .addCase(productsfetch.rejected, (state) => {
         state.products = [];
         state.status = "success";
         console.log("ошибка");

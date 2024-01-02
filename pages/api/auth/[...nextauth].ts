@@ -4,6 +4,8 @@ import NextAuth from "next-auth";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { UserType } from "@/types";
+import { compare } from "bcryptjs";
 
 export default NextAuth({
   providers: [
@@ -22,35 +24,32 @@ export default NextAuth({
         try {
           const urlApi = process.env.API_URL as string;
 
-          const { data: token } = await axios.post(`${urlApi}/auth/login`, {
-            username: credentials?.username,
-            password: credentials?.password,
-          });
+          const { data: users } = await axios.get(`${urlApi}/users`);
 
           //  проверяем, зарегистрирован ли пользователь
-          // const findUser = users.find(
-          //   (user) => user.email === credentials?.email
-          // );
-          if (!token) return null;
+          const findUser = users.find(
+            ({ username }: { username: string }) =>
+              username === credentials?.username
+          );
+          if (!findUser) return null;
 
+          const validPassword = compare(
+            credentials?.password,
+            findUser.password
+          );
+
+          if (!validPassword) return null;
           // const { data: user } = await axios.get(`${urlApi}/users`, {
           //   headers: { Authorization: "Bearer " + token.token },
           // });
-          const { data: users } = await axios.get<any[]>(`${urlApi}/users`);
-          let user = users.find(
-            ({ username }) => username === credentials?.username
-          );
-
-          if (!user) return null;
 
           // let { password, ...currentUser } = user;
           // const userRole = ["user", "admin"];
 
           return {
-            id: user.id,
-            name: user.username,
-            email: user.email,
-            accessToken: token.token,
+            id: findUser.id,
+            name: findUser.username,
+            email: findUser.email,
           };
         } catch (error) {
           console.error(error);
@@ -68,6 +67,7 @@ export default NextAuth({
 
       return token;
     },
+
     //     session({ session, user }) {
     //       if (session?.user && user.id) {
     //         session.user.id = user.id;

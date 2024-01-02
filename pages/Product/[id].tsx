@@ -1,13 +1,22 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import style from "./_product.module.scss";
 import Image from "next/image";
 import { DevicesTypes } from "@/types";
 import { Rating } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 import { GetServerSideProps, Metadata } from "next/types";
-import { Pen } from "lucide-react";
+import { Minus, Pen, Plus } from "lucide-react";
 import Head from "next/head";
+import {
+  addCount,
+  addItem,
+  selectBasket,
+  selectProductById,
+  subCount,
+} from "@/src/redux/slice/basketSlice";
+import { useSession } from "next-auth/react";
 
 export function generateMetadata(devices: DevicesTypes) {
   return {
@@ -16,8 +25,18 @@ export function generateMetadata(devices: DevicesTypes) {
 }
 
 const Product: React.FC<{ devices: DevicesTypes }> = ({ devices }) => {
-  const { title, description, image, price, rating } = devices || false;
-  const { rate, count } = rating || false;
+  const { id, title, description, image, price, rating } = devices;
+  const { rate, count: countBuy } = rating!;
+  const { data: session } = useSession();
+  const { busketProduct } = useSelector(selectBasket);
+  const product = useSelector(selectProductById(id))!;
+
+  let indexProduct = useRef(0);
+  useEffect(() => {
+    indexProduct.current = busketProduct.indexOf(product);
+  }, [busketProduct, busketProduct.length, product]);
+
+  const dispatch = useDispatch();
 
   return (
     <article className={style.root}>
@@ -42,10 +61,34 @@ const Product: React.FC<{ devices: DevicesTypes }> = ({ devices }) => {
             <div className={style.rating}>
               <span>Оценка: </span> <span className={style.value}>{rate}</span>
             </div>
-            <span>Купили: {count} раз</span>
+            <span>Купили: {countBuy} раз</span>
             <div className={style.aside}>
               <span className={style.price}>{price} ₽ </span>{" "}
-              <button>Добавить в корзину</button>
+              {session &&
+                (product?.count ? (
+                  <div className={style.control}>
+                    {" "}
+                    <button
+                      className={style.btn__sub}
+                      onClick={() => dispatch(subCount(indexProduct.current))}
+                      type="button"
+                    >
+                      <Minus />
+                    </button>
+                    <b>{product?.count}</b>
+                    <button
+                      className={style.btn__add}
+                      onClick={() => dispatch(addCount(indexProduct.current))}
+                      type="button"
+                    >
+                      <Plus />
+                    </button>
+                  </div>
+                ) : (
+                  <button onClick={() => dispatch(addItem(devices))}>
+                    Добавить в корзину
+                  </button>
+                ))}
             </div>
           </div>
         </div>
@@ -53,10 +96,12 @@ const Product: React.FC<{ devices: DevicesTypes }> = ({ devices }) => {
           <Link href="/" className={style.return}>
             Назад
           </Link>
-          <Link href="/" className={style.fix}>
-            <span>Редактировать</span>
-            <Pen color="#1a1818" size={15} />
-          </Link>
+          {session && (
+            <Link href="/" className={style.fix}>
+              <span>Редактировать</span>
+              <Pen color="#1a1818" size={15} />
+            </Link>
+          )}
         </div>
       </div>
     </article>

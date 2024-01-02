@@ -10,40 +10,59 @@ import Head from "next/head";
 import NotFound from "@/pages/404";
 import { Save } from "lucide-react";
 import { useRouter } from "next/router";
-import { productfetch } from "@/src/redux/slice/productInfoSlice";
+import {
+  productfetch,
+  productChangefetch,
+} from "@/src/redux/slice/productChangeSlice";
+import Loading from "@/pages/loading";
+import SaveWindow from "@/src/components/SaveWindow";
+
 export function generateMetadata(title: string | null) {
   return {
     title: title,
   };
 }
+
 const CardChange: React.FC = () => {
   const router = useRouter();
-  const id = Number(router.query.id);
+  const { product, getStatus, postStatus } = useSelector(
+    (state: RootStateProduct) => state.changeProducts
+  );
+
+  const id = String(router.query?.id);
   const dispath = useDispatch<AppDispatch>();
-  useEffect(() => {
-    const getAllProducts = async () => {
-      dispath(productfetch({ id: id }));
-    };
-
-    getAllProducts();
-  }, [dispath, id]);
-  const { products } = useSelector((state: RootStateProduct) => state.products);
-
-  const { title, description, image, price } = products as DevicesTypes;
-  const [isValue, setValue] = useState<DevicesTypes>({
-    id: id,
-    title: title,
-    price: price,
-    image: image,
-
-    description: description,
+  const [isValue, setValue] = useState({
+    ...product[0],
   });
 
-  if (!products) {
-    return <NotFound />;
+  const [isSave, setSave] = useState(false);
+  useEffect(() => {
+    const getProduct = async () => {
+      if (id !== "") {
+        console.log(id);
+        dispath(productfetch({ id }));
+      }
+    };
+    getProduct();
+  }, [dispath, id]);
+
+  useEffect(() => {
+    setValue({ ...isValue, ...product[0] });
+  }, [product]);
+
+  if (getStatus !== "success") {
+    return <Loading />;
   }
 
-  //ts ignore
+  const viewWindowSave = () => {
+    switch (postStatus) {
+      case "success":
+        return <SaveWindow typeWindow={postStatus} text="Успешно сохранено!" />;
+
+      case "error":
+        return <SaveWindow typeWindow={postStatus} text="Произошла ошибка" />;
+    }
+  };
 
   const setValueInput = <T,>(
     event: FormEvent<HTMLInputElement>,
@@ -58,48 +77,60 @@ const CardChange: React.FC = () => {
       {" "}
       <article className={style.root}>
         <Head>
-          <title>{generateMetadata(title).title}</title>
+          <title>{generateMetadata(isValue.title).title}</title>
 
           {/* Другие метаданные */}
         </Head>
 
         <div className={style.blocks}>
-          <div className={style.img__block}>
-            <Image src={image} alt={title as string} width={300} height={300} />
-            <div className={style.img__text}>
-              <label htmlFor="imageSrc">Ссылка на изображение</label>
-              <input
-                value={isValue.image}
-                type="text"
-                id="imageSrc"
-                onInput={(e) => setValueInput(e, "image")}
-              ></input>
-            </div>
-          </div>
           <div className={style.info}>
-            <div>
+            <div className={style.img__block}>
+              <Image
+                width={300}
+                height={300}
+                src={isValue.image}
+                priority
+                // onError={() => {
+                //   setErrorUrl(true);
+                // }}
+                alt={isValue.title}
+              />
+
+              <div className={style.img__text}>
+                <label htmlFor="imageSrc">Ссылка на изображение</label>
+                <input
+                  value={isValue.image}
+                  type="text"
+                  id="imageSrc"
+                  onInput={(e) => setValueInput(e, "image")}
+                ></input>
+
+                <button></button>
+              </div>
+            </div>
+            <div className={style.info__block}>
               <label htmlFor="title">Название товара</label>
               <input
-                value={isValue.title || "Пусто"}
+                value={isValue.title!}
                 type="text"
                 id="title"
                 onInput={(e) => setValueInput(e, "title")}
               ></input>
             </div>
-            <div>
+            <div className={style.info__block}>
               <label htmlFor="description">Описание</label>
               <input
                 onInput={(e) => setValueInput(e, "description")}
-                value={isValue.description || "Пусто"}
+                value={isValue.description!}
                 type="text"
                 id="description"
               ></input>
             </div>
 
-            <div>
+            <div className={style.info__block}>
               <label htmlFor="price">Цена</label>
               <input
-                value={`${isValue.price} ₽` || "Пусто"}
+                value={isValue.price}
                 className={style.price}
                 onInput={(e) => setValueInput(e, "price")}
                 type="text"
@@ -109,15 +140,23 @@ const CardChange: React.FC = () => {
               </input>
             </div>
           </div>
-        </div>
-        <div className={style.bottom}>
-          <Link href="/profile/admin/list" className={style.return}>
-            Назад
-          </Link>
-          <button className={style.fix}>
-            <span>Сохранить</span>
-            <Save color="#1a1818" size={15} />
-          </button>
+          {isSave && viewWindowSave()}
+          <div className={style.bottom}>
+            <Link href="/profile/admin/list" className={style.return}>
+              Назад
+            </Link>
+            <button
+              onClick={() => {
+                dispath(productChangefetch({ isValue }));
+                setSave(true);
+                setTimeout(() => setSave((isSave) => !isSave), 2000);
+              }}
+              className={style.fix}
+            >
+              <span>Изменить</span>
+              <Save color="#f6f6f6" size={15} />
+            </button>
+          </div>
         </div>
       </article>
     </div>

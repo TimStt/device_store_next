@@ -23,6 +23,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^9.0.2",
+    "redux-persist": "^6.0.0",
     "url": "^0.11.3"
   },
   "devDependencies": {

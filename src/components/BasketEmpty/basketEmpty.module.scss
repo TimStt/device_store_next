@@ -1,0 +1,18 @@
+@import "../../styles/libs/veriables";
+
+.root {
+  @include flex-center-center;
+  .blocks {
+    @include flex-column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .btnBack {
+    @include button;
+    font-size: 16px;
+    padding: 20px;
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+}

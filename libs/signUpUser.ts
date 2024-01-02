@@ -3,7 +3,7 @@ import axios from "axios";
 import { hash } from "bcryptjs";
 
 const signup = async ({ email, password, username }: UserType) => {
-  const apiUrl = "https://fakestoreapi.com/users";
+  const apiUrl = "https://658ec1272871a9866e79bce7.mockapi.io/users";
 
   try {
     const { data: users } = await axios.get<UserType[]>(`${apiUrl}`);
@@ -12,13 +12,13 @@ const signup = async ({ email, password, username }: UserType) => {
 
     if (checkDuplicate) return "Такой пользователь есть!";
 
-    const data = await axios.post(apiUrl, {
+    const { data: user } = await axios.post(apiUrl, {
       email: email,
       username: username,
       password: hash(password, 12),
     });
 
-    return data;
+    return user;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("error message: ", error.message);

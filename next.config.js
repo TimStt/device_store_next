@@ -6,7 +6,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "./src/styles")],
   },
   images: {
-    domains: ["fakestoreapi.com"],
+    domains: ["fakestoreapi.com", "mockapi.io"],
   },
 };
 

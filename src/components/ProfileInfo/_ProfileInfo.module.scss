@@ -1,8 +1,9 @@
-@import "../../src/styles/veriables";
+@import "../../src/styles/libs/veriables";
 
 .root {
   @include flex-column;
   gap: 20px;
+  margin-block: 40px 130px;
 
   .groupInfo {
     label {

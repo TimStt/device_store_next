@@ -4,13 +4,15 @@ export interface RatingTypes {
 }
 
 export interface DevicesTypes {
-  id: number;
-  title: string | null;
+  lenght: any;
+  id: string;
+  title: string;
   price: number;
   image: string;
   rating?: RatingTypes;
   category?: string | null;
   description: string | null;
+  count?: number;
 }
 
 export interface UserName {
@@ -53,11 +55,28 @@ export interface inputAuthType {
   nickName?: string;
 }
 
-export interface stateProductFetchTypes {
-  products: DevicesTypes | DevicesTypes[] | undefined;
+export interface stateProductsFetchTypes {
+  products: DevicesTypes[];
   status: string;
 }
-
+export interface stateProductFetchTypes {
+  product: DevicesTypes[];
+  getStatus: string;
+  postStatus: string;
+}
+export interface RootStateProducts {
+  products: stateProductsFetchTypes;
+}
 export interface RootStateProduct {
-  products: stateProductFetchTypes;
+  changeProducts: stateProductFetchTypes;
+}
+export interface RootStateBasket {
+  basket: stateBasket;
+}
+
+export interface stateBasket {
+  totalPrice: number;
+  totalCount: number;
+
+  busketProduct: DevicesTypes[];
 }

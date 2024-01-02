@@ -1,9 +1,60 @@
-@import "../../../../../src/styles/veriables";
+@import "../../../../../src/styles/libs/veriables";
 
 .root {
-  @include flex-column;
-  gap: 20px;
+  position: relative;
+  .blocks {
+    @include flex-column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    .info {
+      @include flex-column;
+      gap: 40px;
 
-  .img__block {
+      .img__block {
+        img {
+          display: block;
+          margin: 0 auto;
+          margin-block: 30px;
+        }
+      }
+
+      &__block,
+      .img__text {
+        label {
+          margin-right: 30px;
+        }
+      }
+      /* margin: auto; */
+      align-items: flex-end;
+      input {
+        @include inputChange;
+      }
+    }
+
+    .bottom {
+      @include flex-center-center;
+      gap: 100px;
+
+      button,
+      a {
+        @include button;
+        font-size: 17px;
+      }
+
+      .fix {
+        @include flex-center-center;
+        gap: 10px;
+
+        span {
+          font-family: "Inter", sans-serif;
+        }
+        &:hover {
+          svg {
+            stroke: $color-black-18;
+          }
+        }
+      }
+    }
   }
 }

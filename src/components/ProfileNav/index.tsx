@@ -1,10 +1,9 @@
-"use client";
-
 import { navItemsProfile } from "@/types";
 import Link from "next/link";
 import style from "./_ProfileNav.module.scss";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { Home } from "lucide-react";
 
 const Navigation: React.FC<{ navLinks: navItemsProfile[] }> = ({
   navLinks,
@@ -23,6 +22,9 @@ const Navigation: React.FC<{ navLinks: navItemsProfile[] }> = ({
           {name}
         </Link>
       ))}
+      <Link className={`${style.btn} ${style["btn--home"]}`} href={`/`}>
+        <Home size={20} />
+      </Link>
     </nav>
   );
 };

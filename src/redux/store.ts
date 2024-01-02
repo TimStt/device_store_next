@@ -1,12 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import products from "./slice/productInfoSlice";
+import changeProducts from "./slice/productChangeSlice";
+import basket from "./slice/basketSlice";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import storageSession from "redux-persist/lib/storage/session";
+
 // ...
 
-export const store = configureStore({
-  reducer: {
-    products,
-  },
+const parsisConfig = {
+  key: "root",
+  storage: storageSession,
+};
+
+const reducer = combineReducers({
+  products,
+  changeProducts,
+  basket,
 });
+
+const parsisReducer = persistReducer(parsisConfig, reducer);
+
+export const store = configureStore({
+  reducer: parsisReducer,
+});
+export const persistor = persistStore(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

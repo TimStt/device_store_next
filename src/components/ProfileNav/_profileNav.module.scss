@@ -1,15 +1,19 @@
-@import "../../styles/veriables";
+@import "../../styles/libs/veriables";
 .nav {
   display: flex;
   gap: 20px;
-  margin-block: 20px;
+  margin-top: 40px;
   .btn {
     padding: 7px 10px;
+    display: flex;
     border-radius: 90px;
     font-size: 16px;
     font-weight: 600;
     border: 1px solid $color-black-39;
     transition: all 0.5s ease-in-out;
+    &--home {
+      margin-left: auto;
+    }
     &--active,
     &:hover {
       background-color: $color-black-39;

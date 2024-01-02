@@ -1,17 +1,8 @@
-@import "../../src/styles/veriables";
+@import "../../src/styles/libs/veriables";
 
-.bottom {
-  @include flex-center-center;
-  gap: 60px;
-  .btnChange {
-    @include button;
-    font-size: 16px;
-  }
+.signOut {
+  @include button($red-ec, $color-main, $color-main, $color-black-39);
+  border: 1px solid $red-ec !important;
 
-  .signOut {
-    @include button($red-ec, $color-main, $color-main, $color-black-39);
-    border: 1px solid $red-ec !important;
-
-    font-size: 16px;
-  }
+  font-size: 15px;
 }

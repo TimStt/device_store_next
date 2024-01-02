@@ -1,12 +1,23 @@
-@import "../../../../src/styles/veriables";
+@import "../../../../src/styles/libs/veriables";
 
 .root {
   @include flex-column;
   gap: 40px;
   margin-block: 40px;
-
-  .title {
+  .top {
+    @include flex-center-between;
     margin-bottom: 30px;
+  }
+
+  .btn__back {
+    @include button;
+    display: flex;
+    width: max-content;
+    padding: 6px 20px;
+  }
+
+  .pagination {
+    margin: 0 auto;
   }
 
   .product {

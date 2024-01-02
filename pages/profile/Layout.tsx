@@ -3,6 +3,7 @@ import style from "./_profile.module.scss";
 import Link from "next/link";
 import Navigation from "@/src/components/ProfileNav";
 import { signOut } from "next-auth/react";
+import { Home } from "lucide-react";
 
 const navItems = [
   { name: "Мои данные", href: "/profile" },
@@ -18,6 +19,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <div className="container">
         <h1>Профиль</h1>
         <Navigation navLinks={navItems} />
+
         {children}
       </div>
     </section>

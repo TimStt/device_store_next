@@ -1,11 +1,21 @@
-@import "../../src/styles/veriables";
+@import "../../src/styles/libs/veriables";
+@import "../../src/styles/libs/adaptive";
 .root {
   @include flex-center-center;
   height: calc((100vh) - $height-header);
   position: relative;
+  @include _1000 {
+    margin-block: 100px;
+  }
 
   .blocks {
     @include flex-center-between;
+    gap: 60px;
+    margin-bottom: 50px;
+
+    @include _1000 {
+      @include flex-column;
+    }
     img {
       max-width: 400px;
       transition: all 0.5s;
@@ -15,10 +25,7 @@
       }
     }
     .info {
-      display: flex;
-      /* justify-content: space-between; */
-      /* align-items: center; */
-      flex-direction: column;
+      @include flex-column;
       padding: 32px;
       border-radius: 16px;
       box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
@@ -44,6 +51,15 @@
         button {
           @include button;
         }
+
+        .control {
+          @include flex-center;
+          gap: 20px;
+          button {
+            padding: 6px;
+            display: flex;
+          }
+        }
       }
       .rating {
         @include flex-center;
@@ -65,15 +81,10 @@
     }
   }
   .bottom {
-    @include flex-center;
+    @include flex-center-center;
 
     gap: 100px;
 
-    position: absolute;
-    top: calc(100% - 100px);
-    left: 50%;
-
-    transform: translate(-50%, -50%);
     a {
       display: block;
       @include button(
