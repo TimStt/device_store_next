@@ -97,7 +97,7 @@ const Product: React.FC<{ devices: DevicesTypes }> = ({ devices }) => {
             Назад
           </Link>
           {session && (
-            <Link href="/" className={style.fix}>
+            <Link href={`/profile/admin/list/${id}`} className={style.fix}>
               <span>Редактировать</span>
               <Pen color="#1a1818" size={15} />
             </Link>

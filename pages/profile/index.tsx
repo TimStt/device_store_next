@@ -10,7 +10,7 @@ import Adress from "./admin";
 import Image from "next/image";
 import { getSession, signOut } from "next-auth/react";
 import axios from "axios";
-import Loading from "../loading";
+import Loading from "../../src/components/Loading";
 
 const Profile: React.FC<{ user: UserType }> = ({ user }) => {
   //   const profile: User = {

@@ -4,7 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const productfetch = createAsyncThunk(
-  "product/fetchProductChange",
+  "product/fetchProductGet",
   async ({ id }: { id: string }) => {
     const API_URL = `https://6555201463cafc694fe778bf.mockapi.io/devices/${id}`;
     const { data } = await axios.get(API_URL);
@@ -13,7 +13,7 @@ export const productfetch = createAsyncThunk(
   }
 );
 export const productChangefetch = createAsyncThunk(
-  "product/fetchProductPost",
+  "product/fetchProductChange",
   async ({ isValue: product }: { isValue: DevicesTypes }) => {
     const { id, rating, ...otherProduct } = product;
     const API_URL = `https://6555201463cafc694fe778bf.mockapi.io/devices/${id}`;
@@ -32,10 +32,22 @@ export const productDeletefetch = createAsyncThunk(
   }
 );
 
+export const productPostfetch = createAsyncThunk(
+  "product/fetchProductPost",
+  async ({ value: product }: { value: DevicesTypes }) => {
+    const API_URL = `https://6555201463cafc694fe778bf.mockapi.io/devices`;
+    const { data } = await axios.post(API_URL, product);
+
+    return data;
+  }
+);
+
 const initialState: stateProductFetchTypes = {
   product: [],
   getStatus: "loading",
   postStatus: "loading",
+  deleteStatus: "loading",
+  putStatus: "loading",
 };
 
 export const productChangeSlice = createSlice({
@@ -51,40 +63,40 @@ export const productChangeSlice = createSlice({
       .addCase(productfetch.fulfilled, (state, action) => {
         state.product[0] = action.payload;
         state.getStatus = "success";
-        console.log("успешно получены данные");
       })
       .addCase(productfetch.pending, (state) => {
         state.getStatus = "loading";
-        console.log("загрузка полученных данных");
       })
       .addCase(productfetch.rejected, (state) => {
         state.getStatus = "error";
-        console.log("ошибка полученных данных");
       })
-      .addCase(productChangefetch.fulfilled, (state, action) => {
+      .addCase(productChangefetch.fulfilled, (state) => {
         state.product = [];
-        state.postStatus = "success";
-        console.log("успешно отправлены данные");
+        state.putStatus = "success";
       })
       .addCase(productChangefetch.pending, (state) => {
-        state.postStatus = "loading";
-        console.log("загрузка отправленных данных");
+        state.putStatus = "loading";
       })
       .addCase(productChangefetch.rejected, (state) => {
-        state.postStatus = "error";
-        console.log("ошибка отправки данных ");
+        state.putStatus = "error";
       })
-      .addCase(productDeletefetch.fulfilled, (state, action) => {
-        state.postStatus = "success";
-        console.log("успешно удалены данные");
+      .addCase(productDeletefetch.fulfilled, (state) => {
+        state.deleteStatus = "success";
       })
       .addCase(productDeletefetch.pending, (state) => {
-        state.postStatus = "loading";
-        console.log("загрузка удаляемых данных");
+        state.deleteStatus = "loading";
       })
       .addCase(productDeletefetch.rejected, (state) => {
+        state.deleteStatus = "error";
+      })
+      .addCase(productPostfetch.fulfilled, (state) => {
+        state.postStatus = "success";
+      })
+      .addCase(productPostfetch.pending, (state) => {
+        state.postStatus = "loading";
+      })
+      .addCase(productPostfetch.rejected, (state) => {
         state.postStatus = "error";
-        console.log("ошибка удаления данных ");
       });
   },
 });

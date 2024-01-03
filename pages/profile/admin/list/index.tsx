@@ -12,7 +12,7 @@ import { productsfetch } from "../../../../src/redux/slice/productInfoSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { AppDispatch } from "@/src/redux/store";
-import Loading from "@/pages/loading";
+import Loading from "@/src/components/Loading";
 import { ArrowLeftCircle, Pen, X } from "lucide-react";
 import { Pagination } from "@mui/material";
 

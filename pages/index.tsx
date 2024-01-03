@@ -7,7 +7,7 @@ import { DevicesTypes } from "@/types";
 import style from "../src/styles/moduls/_home.module.scss";
 import { GetServerSideProps, GetStaticProps } from "next/types";
 import { getSession } from "next-auth/react";
-import Loading from "./loading";
+import Loading from "../src/components/Loading";
 
 type deviceType = {
   devices: [DevicesTypes];
@@ -32,11 +32,14 @@ const Home: React.FC<deviceType> = ({ devices }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await fetch("https://fakestoreapi.com/products", {
-      next: {
-        revalidate: 60,
-      },
-    });
+    const res = await fetch(
+      "https://6555201463cafc694fe778bf.mockapi.io/devices",
+      {
+        next: {
+          revalidate: 60,
+        },
+      }
+    );
     const devices = await res.json();
     console.log(devices);
     return { props: { devices } };

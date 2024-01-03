@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./_admin.module.scss";
 import { UserType } from "@/types";
-import Loading from "../../loading";
+import Loading from "../../../src/components/Loading";
 import Link from "next/link";
 import Layout from "../Layout";
 import { Pen, Plus } from "lucide-react";

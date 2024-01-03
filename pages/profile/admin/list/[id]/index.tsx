@@ -3,18 +3,19 @@ import React, { FormEvent, useEffect, useState } from "react";
 import style from "./_cardChange.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { DevicesTypes, RootStateProduct } from "@/types";
+import { RootStateProduct } from "@/types";
+import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import NotFound from "@/pages/404";
+
 import { Save } from "lucide-react";
 import { useRouter } from "next/router";
 import {
   productfetch,
   productChangefetch,
 } from "@/src/redux/slice/productChangeSlice";
-import Loading from "@/pages/loading";
+import Loading from "@/src/components/Loading";
 import SaveWindow from "@/src/components/SaveWindow";
 
 export function generateMetadata(title: string | null) {
@@ -25,7 +26,7 @@ export function generateMetadata(title: string | null) {
 
 const CardChange: React.FC = () => {
   const router = useRouter();
-  const { product, getStatus, postStatus } = useSelector(
+  const { product, getStatus, putStatus } = useSelector(
     (state: RootStateProduct) => state.changeProducts
   );
 
@@ -55,12 +56,12 @@ const CardChange: React.FC = () => {
   }
 
   const viewWindowSave = () => {
-    switch (postStatus) {
+    switch (putStatus) {
       case "success":
-        return <SaveWindow typeWindow={postStatus} text="Успешно сохранено!" />;
+        return <SaveWindow typeWindow={putStatus} text="Успешно сохранено!" />;
 
       case "error":
-        return <SaveWindow typeWindow={postStatus} text="Произошла ошибка" />;
+        return <SaveWindow typeWindow={putStatus} text="Произошла ошибка" />;
     }
   };
 
@@ -130,7 +131,7 @@ const CardChange: React.FC = () => {
             <div className={style.info__block}>
               <label htmlFor="price">Цена</label>
               <input
-                value={isValue.price}
+                value={isValue.price!}
                 className={style.price}
                 onInput={(e) => setValueInput(e, "price")}
                 type="text"

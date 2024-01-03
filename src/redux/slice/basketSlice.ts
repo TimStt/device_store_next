@@ -73,10 +73,13 @@ const culcTotalCount = (state: stateBasket) => {
 };
 
 const culcTotalPrice = (state: stateBasket) => {
-  state.totalPrice = state.busketProduct.reduce(
+  let { totalPrice } = state;
+  totalPrice = state.busketProduct.reduce(
     (acc, { price, count }) => acc + price * count!,
     0
   );
+
+  state.totalPrice = +totalPrice.toFixed(1);
 };
 
 export const selectBasket = (state: RootStateBasket) => state.basket;

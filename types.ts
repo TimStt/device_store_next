@@ -4,10 +4,9 @@ export interface RatingTypes {
 }
 
 export interface DevicesTypes {
-  lenght: any;
   id: string;
   title: string;
-  price: number;
+  price: number | null;
   image: string;
   rating?: RatingTypes;
   category?: string | null;
@@ -63,6 +62,8 @@ export interface stateProductFetchTypes {
   product: DevicesTypes[];
   getStatus: string;
   postStatus: string;
+  putStatus: string;
+  deleteStatus: string;
 }
 export interface RootStateProducts {
   products: stateProductsFetchTypes;

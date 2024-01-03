@@ -1,17 +1,85 @@
-@import "../../src/styles/libs/veriables";
+@import "../../../../src/styles/libs/veriables";
 
-.bottom {
+.root {
   @include flex-center-center;
-  gap: 60px;
-  .btnChange {
-    @include button;
-    font-size: 16px;
+  flex-direction: column;
+  margin-block: 40px 50px;
+  gap: 40px;
+
+  .form {
+    @include flex-column;
+    align-items: center;
+    gap: 20px;
+    max-width: 450px;
+    width: 100%;
+    .bottom {
+      @include flex-center-between;
+      margin-top: 30px;
+      width: 100%;
+      .submit,
+      .btn__back {
+        @include button;
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
+        max-height: 40px;
+        line-height: 0.5rem;
+      }
+    }
   }
+}
 
-  .signOut {
-    @include button($red-ec, $color-main, $color-main, $color-black-39);
-    border: 1px solid $red-ec !important;
+.block {
+  width: 100%;
+  .input__group {
+    position: relative;
+    svg {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      right: 13px;
+      top: 50%;
+      color: $color-gray-a1;
+      translate: all 0.5s;
+    }
 
-    font-size: 16px;
+    .input {
+      @include inputAdd;
+      font-size: 1rem;
+      width: 100%;
+      outline: none;
+
+      box-sizing: border-box;
+
+      &:focus ~ svg {
+        color: $forest-green;
+      }
+      &:is(.invalid) ~ svg {
+        color: $red-error;
+      }
+      &:not(:focus) + svg {
+        color: $color-gray-a1;
+      }
+    }
+
+    &--textarea {
+      .symbol {
+        position: absolute;
+
+        right: 6px;
+        color: $color-gray-a1;
+        font-size: 12px;
+      }
+      .input {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 22px;
+        box-sizing: border-box;
+        resize: none;
+        display: block;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
   }
 }

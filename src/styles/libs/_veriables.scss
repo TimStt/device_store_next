@@ -83,7 +83,6 @@ $height-header: 120px;
   border-radius: 0.3rem;
   font-size: 1.3rem;
   padding: 0.8rem 3rem 0.8rem 1.3rem;
-  transition: all 0.1s;
 
   &:is(.invalid) {
     border: 1.5px solid #ec6b6b;
@@ -91,6 +90,10 @@ $height-header: 120px;
 }
 
 @mixin inputChange {
+  @include authInput;
+}
+
+@mixin inputAdd {
   @include authInput;
 }
 
