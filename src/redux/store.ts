@@ -3,7 +3,16 @@ import products from "./slice/productInfoSlice";
 import changeProducts from "./slice/productChangeSlice";
 import basket from "./slice/basketSlice";
 import storage from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
+} from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
 
 // ...
@@ -23,6 +32,13 @@ const parsisReducer = persistReducer(parsisConfig, reducer);
 
 export const store = configureStore({
   reducer: parsisReducer,
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 export const persistor = persistStore(store);
 

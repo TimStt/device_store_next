@@ -14,7 +14,9 @@ const validate_login = (values: DevicesTypes) => {
   if (!Number(price)) {
     errors.price = "Цена должна быть числовым значением";
   }
-
+  Object.entries(values).find(([key, value]) => {
+    !value ? (errors = { ...errors, [key]: `Обязательное поле` }) : "";
+  });
   return errors;
 };
 

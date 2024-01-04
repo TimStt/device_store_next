@@ -40,7 +40,6 @@ const CardChange: React.FC = () => {
   useEffect(() => {
     const getProduct = async () => {
       if (id !== "") {
-        console.log(id);
         dispath(productfetch({ id }));
       }
     };

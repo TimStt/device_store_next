@@ -48,10 +48,8 @@ const List: React.FC = () => {
             <div className={style.id}>
               <span>№ {index + 1}</span>
             </div>
-            <Link href={`/profile/admin/list/${id}`}>
-              <div>
-                <Image src={image} width={50} height={50} alt={title!} />
-              </div>
+            <Link className={style.image} href={`/profile/admin/list/${id}`}>
+              <Image src={image} width={50} height={50} alt={title!} />
             </Link>
             <Link href={`/profile/admin/list/${id}`}>
               <div className={style.textGroup}>

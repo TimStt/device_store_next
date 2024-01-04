@@ -75,7 +75,7 @@ const culcTotalCount = (state: stateBasket) => {
 const culcTotalPrice = (state: stateBasket) => {
   let { totalPrice } = state;
   totalPrice = state.busketProduct.reduce(
-    (acc, { price, count }) => acc + price * count!,
+    (acc, { price, count }) => acc + price! * count!,
     0
   );
 

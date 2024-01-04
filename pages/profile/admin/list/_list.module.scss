@@ -32,32 +32,45 @@
       box-shadow: 0 5px 10px rgba(178, 178, 178, 0.5);
     }
 
+    .image {
+      display: block;
+      width: 200px;
+      img {
+        display: block;
+        width: auto;
+        margin: 0 auto;
+      }
+    }
+
     .textGroup {
       @include flex-center-between;
       gap: 50px;
+      width: 660px;
       .title {
         font-size: 17px;
-        max-width: 250px;
-        min-width: 330px;
+        width: 280px;
         overflow: hidden;
         margin: auto 0;
         text-overflow: ellipsis;
         text-wrap: nowrap;
       }
       .discr {
+        width: 330px;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         line-height: 1.3em;
         font-size: 15px;
-        max-width: 281px;
       }
     }
 
     .price {
       max-width: 100px;
-      min-width: 100px;
+      width: 100px;
+
+      text-align: center;
+
       overflow: hidden;
       text-overflow: ellipsis;
       text-wrap: nowrap;

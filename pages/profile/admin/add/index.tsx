@@ -1,26 +1,25 @@
 import React, { useState } from "react";
 import style from "./_add.module.scss";
-import { DevicesTypes, RootStateProducts, UserType } from "@/types";
+import { DevicesTypes, RootStateProduct, RootStateProducts } from "@/types";
 import { useFormik } from "formik";
 import validate_product from "@/libs/validateAdmin/validate_product";
 
 import Link from "next/link";
-import {
-  ArrowLeftCircle,
-  Baseline,
-  Link2,
-  PenLine,
-  RussianRuble,
-} from "lucide-react";
+import { Baseline, Link2, PenLine, RussianRuble } from "lucide-react";
 import ErrorAuth from "@/src/components/ErrorAuth";
 import { AppDispatch } from "@/src/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { productPostfetch } from "@/src/redux/slice/productChangeSlice";
+import SaveWindow from "@/src/components/SaveWindow";
 
 const AddProduct: React.FC = () => {
   const dispath = useDispatch<AppDispatch>();
   const { products, status } = useSelector(
     (state: RootStateProducts) => state.products
+  );
+
+  const { postStatus } = useSelector(
+    (state: RootStateProduct) => state.changeProducts
   );
 
   const generateId = () => {
@@ -29,9 +28,28 @@ const AddProduct: React.FC = () => {
     }
   };
 
-  const onSubmit = async (value: DevicesTypes) => {
-    dispath(productPostfetch({ value }));
+  const viewWindowAdd = () => {
+    switch (postStatus) {
+      case "success":
+        return (
+          <SaveWindow typeWindow={postStatus} text="Товар успешно добавлен!" />
+        );
+
+      case "error":
+        return <SaveWindow typeWindow={postStatus} text="Произошла ошибка" />;
+    }
   };
+
+  const [isAdd, setAdd] = useState(false);
+
+  const onSubmit = async (value: DevicesTypes) => {
+    console.log(errorsInput);
+    !findErrors() && dispath(productPostfetch({ value }));
+
+    setAdd(true);
+    setTimeout(() => setAdd((isAdd) => !isAdd), 2000);
+  };
+
   const formik = useFormik({
     initialValues: {
       image: "",
@@ -46,12 +64,8 @@ const AddProduct: React.FC = () => {
 
   const { errors, touched, values } = formik;
 
-  // const [isCountSymbol, setCountSymbol] = useState(
-  //   values?.description?.length! + 1
-  // );
-  const isCountSymbol = values?.description?.length!;
+  const isCountSymbol = values.description?.length;
 
-  console.log(isCountSymbol);
   const {
     image: textErrImage,
     title: textErrTitle,
@@ -64,6 +78,15 @@ const AddProduct: React.FC = () => {
     title: errors.title && touched.title,
     description: errors.description && touched.description,
     price: errors.price && touched.price,
+  };
+
+  const findErrors = () => {
+    const { id, ...otherValues } = formik.values,
+      isError = Object.values(errors).some((value) => value !== ""),
+      isEmpty = Object.values(otherValues).some(
+        (value) => value === "" || value === null
+      );
+    return isEmpty || isError;
   };
 
   return (
@@ -124,6 +147,7 @@ const AddProduct: React.FC = () => {
               <ErrorAuth textError={textErrDescription} />
             )}
           </div>
+          {isAdd && viewWindowAdd()}
 
           <div className={style.block}>
             <div className={style.input__group}>
@@ -145,10 +169,8 @@ const AddProduct: React.FC = () => {
               Назад
             </Link>
             <button
+              disabled={findErrors()}
               className={style.submit}
-              // className={`${
-              //   (errorsInput.username || errorsInput.password) && style.hide
-              // } `}
               type="submit"
               onClick={() => onSubmit(formik.values)}
             >

@@ -33,10 +33,8 @@ function Basket() {
           {busketProduct.map(
             ({ image, price, description, title, id, count }, index) => (
               <div className={style.product} key={image}>
-                <Link href={`/product/${id}`}>
-                  <div>
-                    <Image src={image} width={90} height={90} alt={title!} />
-                  </div>
+                <Link className={style.image} href={`/product/${id}`}>
+                  <Image src={image} width={90} height={90} alt={title!} />
                 </Link>
                 <Link href={`/product/${id}`}>
                   <div className={style.text__group}>
@@ -48,21 +46,23 @@ function Basket() {
                   <span>{price} ₽</span>
                 </div>
                 <div className={style.btns}>
-                  <button
-                    className={style.btn__sub}
-                    onClick={() => dispatch(subCount(index))}
-                    type="button"
-                  >
-                    <Minus />
-                  </button>
-                  <b>{count}</b>
-                  <button
-                    className={style.btn__add}
-                    onClick={() => dispatch(addCount(index))}
-                    type="button"
-                  >
-                    <Plus />
-                  </button>
+                  <div className={style.counter}>
+                    <button
+                      className={style.btn__sub}
+                      onClick={() => dispatch(subCount(index))}
+                      type="button"
+                    >
+                      <Minus />
+                    </button>
+                    <b>{count}</b>
+                    <button
+                      className={style.btn__add}
+                      onClick={() => dispatch(addCount(index))}
+                      type="button"
+                    >
+                      <Plus />
+                    </button>
+                  </div>
                   <button
                     onClick={() => dispatch(delItem(index))}
                     className={style.delete}

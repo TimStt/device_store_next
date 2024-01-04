@@ -24,23 +24,50 @@
 
         .title {
           font-size: 20px;
-          max-width: 250px;
-          min-width: 330px;
+          width: 280px;
           overflow: hidden;
           margin: auto 0;
           text-overflow: ellipsis;
           text-wrap: nowrap;
         }
+        p {
+          width: 330px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          line-height: 1.3em;
+          font-size: 15px;
+        }
       }
 
-      p {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        line-height: 1.3em;
-        font-size: 15px;
-        max-width: 281px;
+      .btns {
+        @include flex-center;
+        gap: 40px;
+        .counter {
+          @include flex-center;
+          gap: 15px;
+        }
+
+        .delete {
+          display: flex;
+          color: $red-ec;
+        }
+
+        button {
+          cursor: pointer;
+        }
+      }
+
+      .image {
+        display: block;
+
+        width: 160px;
+        img {
+          display: block;
+          width: auto;
+          margin: 0 auto;
+        }
       }
     }
     .product + .product {
@@ -57,7 +84,7 @@
       line-height: 32px;
     }
 
-    .totalCoount {
+    .totalCount {
       font-size: 14px;
       line-height: 20px;
     }
