@@ -6,7 +6,14 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "./src/styles")],
   },
   images: {
-    domains: ["fakestoreapi.com", "mockapi.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fakestoreapi.com",
+        port: "",
+        pathname: "/img/**",
+      },
+    ],
   },
 };
 

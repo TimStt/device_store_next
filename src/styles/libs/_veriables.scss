@@ -9,6 +9,8 @@ $forest-green: forestgreen;
 $red-ec: #ec6b6b;
 $red-error: #ff5c5c;
 $blue-gitHub: #3e75c3;
+$blue-active-item: rgb(71, 71, 226);
+$blue-notRegister: blue;
 $google-peach: #e0ac53;
 
 $font-size-h1: 38px;
@@ -87,6 +89,16 @@ $height-header: 120px;
 
   &:is(.invalid) {
     border: 1.5px solid #ec6b6b;
+  }
+}
+
+@mixin activeItemMenuMob {
+  span {
+    color: $blue-active-item;
+  }
+
+  svg {
+    stroke: $blue-active-item;
   }
 }
 

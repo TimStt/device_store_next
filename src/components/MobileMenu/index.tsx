@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import cls from "classnames";
 import ProfileItem from "../ProfileItem";
 import React from "react";
-import { menu_mobil } from "./mobile-items.data";
+import { menu_mobil } from "./menu-items.data";
 
 const MenuMobile: React.FC = () => {
   const { totalCount } = useSelector(selectBasket);

@@ -48,7 +48,7 @@ const CardChange: React.FC = () => {
 
   useEffect(() => {
     setValue({ ...isValue, ...product[0] });
-  }, [product]);
+  }, [isValue, product]);
 
   if (getStatus !== "success") {
     return <Loading />;

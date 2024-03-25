@@ -32,7 +32,7 @@ export const basketSlice = createSlice({
     subCount: (state, action) => {
       const idSub = action.payload;
       const updateObject = state.busketProduct.find((_, id) => id === idSub);
-      console.log(updateObject);
+
       switch (updateObject?.count) {
         case 1:
           state.busketProduct.splice(idSub, 1);

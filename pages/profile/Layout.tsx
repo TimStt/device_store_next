@@ -1,9 +1,7 @@
 import React from "react";
 import style from "./_profile.module.scss";
-import Link from "next/link";
 import Navigation from "@/src/components/ProfileNav";
 import { signOut } from "next-auth/react";
-import { Home } from "lucide-react";
 
 const navItems = [
   { name: "Мои данные", href: "/profile" },
@@ -15,14 +13,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     await signOut();
   };
   return (
-    <section className={style.root}>
-      <div className="container">
+    <div className="container">
+      <section className={style.root}>
         <h1>Профиль</h1>
         <Navigation navLinks={navItems} />
 
         {children}
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

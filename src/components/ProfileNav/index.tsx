@@ -1,6 +1,6 @@
 import { navItemsProfile } from "@/types";
 import Link from "next/link";
-import style from "./_ProfileNav.module.scss";
+import style from "./_profileNav.module.scss";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { Home } from "lucide-react";

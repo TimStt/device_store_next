@@ -6,10 +6,10 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useSelector } from "react-redux";
 import { selectBasket } from "@/src/redux/slice/basketSlice";
-import MenuDekstop from "../MenuNav";
-import MenuMobile from "../MobileMenu";
-import MenuNav from "../MenuNav";
+import Profile from "@/pages/profile";
 import ProfileItem from "../ProfileItem";
+
+import MenuNav from "../MenuNav";
 
 const Header: React.FC = () => {
   const { data: session } = useSession();

@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     );
     const devices = await res.json();
-    console.log(devices);
+   
     return { props: { devices } };
   } catch (error) {
     return { props: {}, isLoading: true };
