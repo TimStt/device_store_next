@@ -48,7 +48,8 @@ const CardChange: React.FC = () => {
 
   useEffect(() => {
     setValue({ ...isValue, ...product[0] });
-  }, [isValue, product]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product]);
 
   if (getStatus !== "success") {
     return <Loading />;
