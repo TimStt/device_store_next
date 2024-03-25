@@ -6,24 +6,14 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useSelector } from "react-redux";
 import { selectBasket } from "@/src/redux/slice/basketSlice";
-import MenuDekstop from "../MenuDekstop";
+import MenuDekstop from "../MenuNav";
 import MenuMobile from "../MobileMenu";
+import MenuNav from "../MenuNav";
+import ProfileItem from "../ProfileItem";
 
 const Header: React.FC = () => {
-  const widthMobileMenu = 750;
-  const [isWidthWindow, setWidthWindow] = useState(window.innerWidth);
+  const { data: session } = useSession();
 
-  useEffect(() => {
-    const updateWidth = () => {
-      setWidthWindow(window.innerWidth);
-    };
-
-    window.addEventListener("resize", updateWidth);
-
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-    };
-  }, []);
   return (
     <header className={style.root}>
       <div className="container">
@@ -38,7 +28,7 @@ const Header: React.FC = () => {
             </div>
           </Link>
 
-          {isWidthWindow < widthMobileMenu ? <MenuMobile /> : <MenuDekstop />}
+          {session ? <MenuNav /> : <ProfileItem text="Войти" href="/login" />}
         </div>
       </div>
     </header>

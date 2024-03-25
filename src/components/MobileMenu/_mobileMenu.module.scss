@@ -2,34 +2,78 @@
 @import "../../styles/libs/adaptive";
 
 .root {
-  z-index: 100;
-  position: absolute;
+  display: block;
+  padding: 0;
+
+  border: none;
+  margin: 0;
+  display: block;
   padding: 20px 15px;
-  right: 0;
-  width: 30%;
-  height: 100vh;
-  top: 0;
+
+  min-width: 100dvw;
+  min-height: 100dvh;
+
   background-color: $color-main;
+  transition-property: transform;
+  transition-duration: $duration;
+
+  transform: translateY(-200%);
+  overflow: hidden;
+  &[open] {
+    transform: translateY(0%);
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    @include flex-center-center;
+  }
 
   .list {
+    margin: auto;
     @include flex-column;
     gap: 30px;
     height: 100%;
     position: relative;
     align-items: center;
 
-    .logOut__btn {
-      position: absolute;
-      bottom: 8px;
-      /* top: 50%; */
-      left: 50%;
-      transform: translate(-50%, -50%);
+    &__item {
+      a,
+      button {
+        display: flex;
+        gap: 20px;
+        cursor: pointer;
+        align-items: center;
+      }
+
+      span {
+        font-size: 17px;
+        font-weight: 400;
+        color: $color-black-18;
+      }
     }
   }
 }
 
 .toggle__btn {
-  .hidden__text {
-    display: none;
+  display: none;
+  @include less_660 {
+    @include flex-center-center;
+  }
+  transition-property: background-color;
+  transition-duration: $duration;
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: rgb(235, 230, 230);
   }
 }

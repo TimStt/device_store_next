@@ -5,6 +5,10 @@
   @include flex-center-between;
   gap: 30px;
 
+  @include less_660 {
+    display: none;
+  }
+
   a {
     @include flex-center-between;
     gap: 15px;

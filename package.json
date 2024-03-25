@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
+    "classnames": "^2.5.1",
     "formik": "^2.4.5",
     "lucide-react": "^0.294.0",
     "next": "14.0.3",

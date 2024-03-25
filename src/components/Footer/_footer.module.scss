@@ -10,7 +10,7 @@
     @include flex-center-between;
     gap: 29px;
 
-    @include _660 {
+    @include less_660 {
       gap: 58px;
     }
 
