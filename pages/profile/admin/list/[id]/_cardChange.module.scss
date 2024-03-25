@@ -1,4 +1,5 @@
-@import "../../../../../src/styles/libs/veriables";
+@import "../../../../../src/styles/libs/veriables",
+  "../../../../../src/styles/libs/adaptive";
 
 .root {
   position: relative;
@@ -22,6 +23,10 @@
 
       &__block,
       .img__text {
+        @include _710 {
+          @include flex-column;
+          gap: 10px;
+        }
         label {
           margin-right: 30px;
         }

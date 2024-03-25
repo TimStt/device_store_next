@@ -1,12 +1,20 @@
-@import "../../../../src/styles/libs/veriables";
+@import "../../../../src/styles/libs/veriables",
+  "../../../../src/styles/libs/adaptive";
 
 .root {
   @include flex-column;
   gap: 40px;
   margin-block: 40px;
+
+  @include _710 {
+    align-items: center;
+  }
   .top {
     @include flex-center-between;
     margin-bottom: 30px;
+    @include _710 {
+      width: 100%;
+    }
   }
 
   .btn__back {
@@ -27,6 +35,12 @@
     border: 1px solid $color-gray-a1;
     transition: all 0.4s;
 
+    @include _710 {
+      flex-direction: column;
+      gap: 30px;
+      max-width: 400px;
+    }
+
     &:hover {
       transform: scale(1.02, 1.01);
       box-shadow: 0 5px 10px rgba(178, 178, 178, 0.5);
@@ -35,10 +49,20 @@
     .image {
       display: block;
       width: 200px;
+
+      @include _710 {
+        width: 150px;
+        height: 150px;
+      }
       img {
         display: block;
         width: auto;
         margin: 0 auto;
+        @include _710 {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
       }
     }
 
@@ -46,6 +70,9 @@
       @include flex-center-between;
       gap: 50px;
       width: 660px;
+      @include _1100 {
+        width: 100%;
+      }
       .title {
         font-size: 17px;
         width: 280px;
@@ -53,6 +80,10 @@
         margin: auto 0;
         text-overflow: ellipsis;
         text-wrap: nowrap;
+        @include _710 {
+          font-size: 18px;
+          text-align: center;
+        }
       }
       .discr {
         width: 330px;
@@ -62,6 +93,10 @@
         -webkit-box-orient: vertical;
         line-height: 1.3em;
         font-size: 15px;
+
+        @include _1100 {
+          display: none;
+        }
       }
     }
 

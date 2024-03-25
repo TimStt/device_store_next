@@ -8,7 +8,14 @@
     @include flex-center-between;
     margin: auto;
     max-width: 1100px;
+    @include _1000 {
+      max-width: 500px;
+    }
     padding: 33px 25px;
+
+    @include _560 {
+      padding-inline: 0px;
+    }
     width: 100%;
     border-radius: 14px;
     height: auto;

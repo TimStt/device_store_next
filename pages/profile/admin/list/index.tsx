@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useCallback, useEffect, useState } from "react";
 import style from "./_list.module.scss";
 import {
   DevicesTypes,
@@ -22,13 +22,19 @@ const List: React.FC = () => {
   );
 
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    getAllProducts();
-  }, [dispatch]);
 
-  const getAllProducts = async () => {
+  const deleteProduct = (id: string) => {
+    dispatch(productDeletefetch({ id }));
     dispatch(productsfetch());
   };
+
+  useEffect(() => {
+    dispatch(productsfetch());
+  }, [dispatch]);
+
+  // const getAllProducts = async () => {
+  //   dispatch(productsfetch());
+  // };
   if (status !== "success") {
     return <Loading />;
   }
@@ -72,10 +78,7 @@ const List: React.FC = () => {
               </Link>
             </button>
             <button
-              onClick={async () => {
-                await dispatch(productDeletefetch({ id }));
-                await getAllProducts();
-              }}
+              onClick={() => deleteProduct(id)}
               className={style.delete}
               aria-label="Удалить"
               title="Удалить"

@@ -9,20 +9,15 @@ import { useEffect, useState } from "react";
 import cls from "classnames";
 import ProfileItem from "../ProfileItem";
 import React from "react";
+import { menu_mobil } from "./mobile-items.data";
 
 const MenuMobile: React.FC = () => {
   const { totalCount } = useSelector(selectBasket);
-  const { data: session } = useSession();
-  const modalRef = React.createRef<HTMLDialogElement>();
 
-  const [isOpenMenu, setOpenMenu] = useState(false);
+  const modalRef = React.createRef<HTMLDialogElement>();
 
   const openMenu = () => modalRef.current?.showModal();
   const closeMneu = () => modalRef.current?.close();
-
-  useEffect(() => {
-    isOpenMenu ? modalRef.current?.showModal() : modalRef.current?.close();
-  }, [isOpenMenu, modalRef]);
 
   return (
     <>
@@ -38,17 +33,15 @@ const MenuMobile: React.FC = () => {
             <X />
           </button>
           <ul className={style.list}>
-            <li className={style.list__item}>
-              <ProfileItem text="Профиль" href="/profile" />
-            </li>
-            <li className={style.list__item}>
-              <Link href="/basket">
-                <ShoppingBasket color="#9B9B9B" size={26} />
-                <span>
-                  Корзина <b>{totalCount || ""}</b>
-                </span>
-              </Link>
-            </li>
+            {menu_mobil.map(({ href, text, icon }) => (
+              <li className={style.list__item} key={href}>
+                <Link href={href} onClick={closeMneu}>
+                  {icon}
+                  <span>{text}</span>
+                </Link>
+              </li>
+            ))}
+
             <li className={style.list__item}>
               <button onClick={() => signOut()}>
                 <LogOut />

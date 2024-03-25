@@ -41,18 +41,13 @@ h1 {
   line-height: 3rem;
   @include _1000 {
     font-size: calc(
-      28px + (38 - 28) * ((100vw - 320px) / (1000 - 320))
+      28px + (38 - 20) * ((100vw - 320px) / (1000 - 320))
     ) !important;
   }
 }
 h2 {
   font-size: $font-size-h2;
   line-height: 2rem;
-  @include _1000 {
-    font-size: calc(
-      15px + (18 - 15) * ((100vw - 320px) / (1000 - 320))
-    ) !important;
-  }
 }
 
 button {

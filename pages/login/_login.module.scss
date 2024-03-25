@@ -1,6 +1,10 @@
-@import "../../src/styles/libs/veriables";
+@import "../../src/styles/libs/veriables", "../../src/styles/libs/adaptive";
 .root {
   padding-inline: 40px;
+
+  @include _460 {
+    padding-inline: 15px;
+  }
   $widthSvg: 23px;
   input {
     @include authInput;
@@ -11,8 +15,14 @@
   }
 
   .title {
+    @include _1000 {
+      text-align: center;
+    }
     p {
       @include authDiscription;
+      @include _560 {
+        font-size: 15px;
+      }
     }
   }
   .block {
@@ -22,9 +32,14 @@
 
   .input__group {
     position: relative;
+
     input {
       width: 100%;
       box-sizing: border-box;
+      @include _460 {
+        font-size: 16px;
+      }
+
       &:focus + svg {
         stroke: $color-black-39;
       }
