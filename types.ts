@@ -69,6 +69,7 @@ export interface RootStateProducts {
   products: stateProductsFetchTypes;
 }
 export interface RootStateProduct {
+  [x: string]: any;
   changeProducts: stateProductFetchTypes;
 }
 export interface RootStateBasket {

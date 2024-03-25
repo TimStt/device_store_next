@@ -9,6 +9,7 @@ const windowSave: React.FC<{
       className={`${style.window__save} ${
         style[`window__save--${typeWindow}`]
       }`}
+      role="alert"
     >
       <h3>{text}</h3>
     </div>

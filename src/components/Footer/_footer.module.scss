@@ -1,4 +1,5 @@
 @import "../../styles/libs/veriables";
+@import "../../styles/libs/adaptive";
 .root {
   width: 100%;
   padding-block: 35px;
@@ -7,14 +8,28 @@
   color: $colorFontFooter;
   .blocks {
     @include flex-center-between;
-    align-items: start;
+    gap: 29px;
+
+    @include _660 {
+      gap: 58px;
+    }
+
+    flex-wrap: wrap;
     .logo {
       @include logo;
+      a {
+        @include flex-center-between;
+        gap: 20px;
+      }
       h2 {
         color: $color-main;
       }
     }
-
+    .nav,
+    .contacts,
+    .logo {
+      margin: auto;
+    }
     .nav {
       ul:first-child {
         font-weight: 600;
@@ -27,14 +42,21 @@
       }
     }
     .contacts {
+      @include flex-column;
+      align-items: center;
+      gap: 30px;
       figure {
         display: flex;
-        gap: 20px;
-        margin-top: 30px;
+        gap: 15px;
+      }
+
+      .adress {
+        text-align: center;
+        font-size: 15px;
       }
 
       .private {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 300;
       }
     }

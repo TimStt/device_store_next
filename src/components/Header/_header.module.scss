@@ -1,4 +1,5 @@
 @import "../../styles/libs/veriables";
+@import "../../styles/libs/adaptive";
 
 .root {
   border-bottom: 1px solid $color-main;
@@ -10,19 +11,11 @@
 
   .logo {
     @include logo;
-  }
 
-  .nav,
-  .nav a {
-    @include flex-center-between;
-    gap: 40px;
-    a {
-      gap: 15px;
-    }
     span {
-      font-size: 17px;
-      font-weight: 400;
-      color: $color-black-18;
+      @include _970 {
+        font-size: 14px;
+      }
     }
   }
 }

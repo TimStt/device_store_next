@@ -5,9 +5,9 @@ import style from "./_login.module.scss";
 
 import Link from "next/link";
 import { AtSign, Eye, EyeOff } from "lucide-react";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useFormik } from "formik";
-import { UserType, inputAuthType } from "@/types";
+import { UserType } from "@/types";
 import validate_login from "@/libs/validateAuth/validate_login";
 import ErrorAuth from "@/src/components/ErrorAuth";
 import { useRouter } from "next/router";
@@ -21,6 +21,7 @@ const Login: React.FC = () => {
   const clickHandlerAuth = async (provider: string) => {
     await signIn(provider, { callbackUrl: "http://localhost:3000" });
   };
+
   const onSubmit = async (value: UserType) => {
     const status = await signIn("credentials", {
       redirect: false,
@@ -41,6 +42,7 @@ const Login: React.FC = () => {
       );
     }
   };
+
   const formik = useFormik({
     initialValues: {
       username: "",

@@ -9,15 +9,15 @@ const Footer: React.FC = () => {
     <footer className={style.root}>
       <div className="container">
         <div className={style.blocks}>
-          <Link href="/">
-            <div className={style.logo}>
+          <div className={style.logo}>
+            <Link href="/">
               <Image src="/logo_footer.svg" alt="logo" width={60} height={60} />
               <div>
                 <h2>Comrade</h2>
                 <span>Лучшие продукты - здесь</span>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           <nav className={style.nav}>
             <ul>
@@ -28,10 +28,10 @@ const Footer: React.FC = () => {
               <li>Контакты</li>
             </ul>
           </nav>
-          <section className={style.contacts}>
+          <div className={style.contacts}>
             <a href="tel:83466628151">8 (3466) 62-81-51</a>
 
-            <figure>
+            <figure className={style.adress}>
               <MapPin />
               <figcaption>
                 Улица Ленина, 121, Орехово-Зуево, Московская область
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
               <ShieldCheck size={20} />
               <figcaption>Политика конфиденциальности</figcaption>
             </figure>
-          </section>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,0 +1,35 @@
+@import "../../styles/libs/veriables";
+@import "../../styles/libs/adaptive";
+
+.root {
+  z-index: 100;
+  position: absolute;
+  padding: 20px 15px;
+  right: 0;
+  width: 30%;
+  height: 100vh;
+  top: 0;
+  background-color: $color-main;
+
+  .list {
+    @include flex-column;
+    gap: 30px;
+    height: 100%;
+    position: relative;
+    align-items: center;
+
+    .logOut__btn {
+      position: absolute;
+      bottom: 8px;
+      /* top: 50%; */
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.toggle__btn {
+  .hidden__text {
+    display: none;
+  }
+}
