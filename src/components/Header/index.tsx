@@ -3,7 +3,7 @@ import style from "./header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import ProfileItem from "@/components/header/ui/profile-item";
+import ProfileItem from "./ui/profile-item";
 import MenuNav from "./ui/menu-nav";
 import cls from "classnames";
 import { paths } from "@/shared/config/paths";
