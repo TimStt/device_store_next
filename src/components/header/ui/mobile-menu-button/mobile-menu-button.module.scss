@@ -2,11 +2,15 @@
   "../../../../styles/libs/mixins";
 
 .root {
-  @include flex-center-center;
+  display: none;
   border-radius: 50%;
   cursor: pointer;
   padding: 10px;
   aspect-ratio: 1;
+
+  @include less_660 {
+    @include flex-center-center;
+  }
   &:hover,
   &:active {
     background-color: #ebe6e6;

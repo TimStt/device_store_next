@@ -1,4 +1,4 @@
-import { Link, Pen } from "lucide-react";
+import { Pen } from "lucide-react";
 import Image from "next/image";
 import { title } from "process";
 import React from "react";
@@ -9,9 +9,10 @@ import { useSession } from "next-auth/react";
 import style from "./main-info-card.module.scss";
 import { IMainInfoCardProps, IPropsDevice } from "@/shared/types/ui";
 import { paths } from "@/shared/config/paths";
+import Link from "next/link";
 
 const MainInfoCard = ({ device }: IMainInfoCardProps) => {
-  const { rate } = device.rating;
+  const { rate, count: countBuy } = device.rating;
   const { data: session } = useSession();
   return (
     <>
@@ -27,11 +28,13 @@ const MainInfoCard = ({ device }: IMainInfoCardProps) => {
           <h1>{device.title}</h1>
           <p>{device.description}</p>
 
-          <div className={style.root__rating}>
-            <span>Оценка: </span>{" "}
-            <span className={style.root__rating__value}>{rate}</span>
-          </div>
-          <span>Купили: {device.countBuy} раз</span>
+          <span>
+            {" "}
+            Оценка:
+            <span className={style.root__rating__value}> {rate}</span>
+          </span>
+
+          <span>Купили: {countBuy} раз</span>
         </div>
       </div>
       <div className={style.root__bottom}>

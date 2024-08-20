@@ -1,1 +1,9 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/404":"pages/404.html","/api/auth/[...nextauth]":"pages/api/auth/[...nextauth].js","/basket":"pages/basket.html","/api/image-proxy":"pages/api/image-proxy.js","/login":"pages/login.html","/profile/admin/add":"pages/profile/admin/add.html","/profile/admin":"pages/profile/admin.html","/profile/admin/list":"pages/profile/admin/list.html","/profile/admin/list/product":"pages/profile/admin/list/product.html","/register":"pages/register.html","/":"pages/index.js","/product/[id]":"pages/product/[id].js","/profile":"pages/profile.js","/_document":"pages/_document.js"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/profile/admin": "pages/profile/admin.js",
+  "/product/[id]": "pages/product/[id].js"
+}

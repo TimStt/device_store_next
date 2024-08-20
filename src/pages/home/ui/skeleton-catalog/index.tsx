@@ -7,8 +7,8 @@ const SkeletonCatalog = () => {
       width={320}
       height={478}
       viewBox="0 0 320 478"
-      backgroundColor="var(--color-black-2)"
-      foregroundColor="var(--color-gray-6)"
+      backgroundColor="#e6e5e5"
+      foregroundColor="white"
     >
       <rect x="0" y="300" rx="9" ry="9" width="280" height="30" />
       <rect x="4" y="353" rx="0" ry="0" width="204" height="44" />

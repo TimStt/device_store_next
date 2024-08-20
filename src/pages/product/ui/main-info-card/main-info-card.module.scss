@@ -50,7 +50,7 @@
     gap: 100px;
 
     a {
-      display: block;
+      @include flex-center;
       @include button(
         $color-main,
         $color-black-18,
@@ -64,6 +64,7 @@
   }
 
   &__fix {
+    font-size: 17px;
     svg {
       margin-left: 20px;
     }
