@@ -27,7 +27,7 @@ export const useTriggerActionsModal = ({
 
   useEffect(() => {
     setStateModal(isOpen ? "open" : "close");
-  }, [setStateModal, dispatch, isOpen, modalRef]);
+  }, [setStateModal, isOpen]);
 
   useScrollHidden(isOpen);
   useSetStateModal({

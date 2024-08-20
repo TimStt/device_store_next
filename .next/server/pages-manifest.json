@@ -3,7 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/profile/admin": "pages/profile/admin.js",
-  "/product/[id]": "pages/product/[id].js"
+  "/product/[id]": "pages/product/[id].js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js"
 }

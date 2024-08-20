@@ -1,12 +1,12 @@
 import React from "react";
 import { IDevicesTypes } from "@/shared/types/products";
-import Card from "@/components/card";
 
 import style from "./product-list.module.scss";
 import { IPropsDevices } from "@/shared/types/ui";
 import { useSelector } from "react-redux";
 import { selectorCatalogProducts } from "@/redux/selectors/catalog";
 import SkeletonCatalog from "../skeleton-catalog";
+import Card from "@/components/card";
 
 const ProductList: React.FC = () => {
   const devices = useSelector(selectorCatalogProducts);
