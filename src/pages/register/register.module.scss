@@ -1,0 +1,18 @@
+@import "../../styles/libs/mixins", "../../styles/libs/veriables";
+.root {
+  padding-inline: 40px;
+  &__title {
+    p {
+      @include authDiscription;
+    }
+  }
+  &__not_register {
+    @include authDiscription;
+    margin-block: 20px;
+
+    a {
+      color: blue;
+      font-weight: 600;
+    }
+  }
+}

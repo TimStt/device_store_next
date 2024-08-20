@@ -1,0 +1,59 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+.root {
+  padding: var(--paddingTopButton) calc(var(--widthSvg) * 2);
+  font-weight: 600;
+  width: 100%;
+  border-width: 2px;
+  font-size: 16px;
+  letter-spacing: 0.54px;
+  @include flex-center-center;
+  cursor: pointer;
+  gap: 0.7rem;
+  &.google,
+  &.github {
+    svg {
+      transition-property: background fill color;
+
+      width: var(--widthSvg);
+      height: auto;
+
+      pointer-events: none;
+    }
+  }
+
+  &.google {
+    transition-property: background;
+    transition-duration: $duration;
+    background: $google-peach;
+    color: $color-main;
+
+    svg path {
+      fill: $color-main;
+    }
+    &:hover {
+      background: $color-main;
+      outline: 1px solid $google-peach;
+      color: $color-black-39;
+      svg path {
+        fill: $color-black-39;
+      }
+    }
+  }
+  &.github {
+    transition-property: background-color color;
+    transition-duration: $duration;
+    border-color: $blue-gitHub;
+    background-color: $blue-gitHub;
+    color: $color-main;
+
+    &:hover {
+      background-color: $color-main;
+      outline: 1px solid $blue-gitHub;
+      color: $color-black-39;
+      svg {
+        fill: $blue-gitHub;
+      }
+    }
+  }
+}

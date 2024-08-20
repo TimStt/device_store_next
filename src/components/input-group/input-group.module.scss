@@ -1,0 +1,44 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+.root {
+  height: 90px;
+
+  &.iconNone {
+    input {
+      padding: 12px 15px;
+    }
+  }
+
+  &.invalid {
+    input {
+      border: 1.5px solid $red-ec;
+    }
+  }
+
+  input {
+    border: 1px solid $color-gray-a1;
+    border-radius: 0.3rem;
+    font-size: 1.3rem;
+    padding: 0.8rem 3rem 0.8rem 1.3rem;
+    background-color: white;
+
+    &::placeholder {
+      opacity: 0.6;
+      font-size: 16px;
+    }
+    &::selection {
+      background-color: $color-gray-a1;
+    }
+
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus + svg {
+      stroke: $color-black-39;
+    }
+
+    @media (max-width: 570px) {
+      font-size: 1rem;
+    }
+  }
+}

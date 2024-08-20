@@ -1,0 +1,6 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+.root {
+  @include flex-center;
+  gap: 20px;
+}

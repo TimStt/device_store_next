@@ -1,8 +1,9 @@
 $container-max-width: 1530px;
 $container-padding-x: 40px;
-$duration: 0.5s;
+$duration: 0.3s;
 $color-main: #f6f6f6;
 $color-gray-a1: #a1a1a1;
+$color-gray-2: #f5f5f5;
 $color-black-18: #1a1818;
 $color-black-39: #393737;
 $forest-green: forestgreen;
@@ -16,100 +17,3 @@ $google-peach: #e0ac53;
 $font-size-h1: 38px;
 $font-size-h2: 18px;
 $height-header: 120px;
-
-@mixin flex-center-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@mixin flex-center-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@mixin flex-center {
-  display: flex;
-
-  align-items: center;
-}
-@mixin flex-column {
-  display: flex;
-
-  flex-direction: column;
-}
-
-@mixin logo {
-  @include flex-center-between;
-  gap: 20px;
-  span {
-    color: gray;
-  }
-  h2 {
-    font-size: 20px;
-    margin-bottom: 4px;
-    font-weight: 700;
-    color: black;
-    text-transform: uppercase;
-  }
-}
-
-@mixin button(
-  $background-color: #353434,
-  $background-color-hover: $color-main,
-  $font-color: white,
-  $font-color-hover: $color-black-18
-) {
-  border-radius: 10px;
-  padding: 12px 20px;
-
-  text-wrap: nowrap;
-  background: $background-color;
-  color: $font-color;
-  border: 1px solid $color-black-18;
-  transition: all 0.4s;
-  &:hover {
-    background: $background-color-hover;
-    color: $font-color-hover;
-  }
-}
-
-@mixin authDiscription {
-  color: $color-gray-a1;
-  margin-block: 15px 30px;
-  font-size: 15px;
-  font-weight: 400;
-}
-
-@mixin authInput {
-  border: 1px solid $color-gray-a1;
-  border-radius: 0.3rem;
-  font-size: 1.3rem;
-  padding: 0.8rem 3rem 0.8rem 1.3rem;
-
-  &:is(.invalid) {
-    border: 1.5px solid #ec6b6b;
-  }
-}
-
-@mixin activeItemMenuMob {
-  span {
-    color: $blue-active-item;
-  }
-
-  svg {
-    stroke: $blue-active-item;
-  }
-}
-
-@mixin inputChange {
-  @include authInput;
-}
-
-@mixin inputAdd {
-  @include authInput;
-}
-
-@mixin color($color) {
-  border-color: $color;
-}

@@ -1,0 +1,21 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+
+.root {
+  border-bottom: 1px solid $color-main;
+  &__wrapper {
+    @include flex-center-between;
+
+    height: $height-header;
+  }
+
+  &__logo {
+    @include logo;
+
+    span {
+      @include _970 {
+        font-size: 14px;
+      }
+    }
+  }
+}

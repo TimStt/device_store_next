@@ -1,0 +1,14 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+
+.root {
+  @include button;
+  margin-block: 15px 0px;
+  font-size: 19px;
+  width: 100%;
+  font-weight: 500;
+
+  &:hover {
+    border: 1px solid $color-black-18;
+  }
+}

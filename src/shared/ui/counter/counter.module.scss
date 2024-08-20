@@ -1,0 +1,10 @@
+@import "../../../styles/libs/mixins";
+
+.root {
+  @include flex-center;
+  gap: 15px;
+
+  &__button {
+    cursor: pointer;
+  }
+}

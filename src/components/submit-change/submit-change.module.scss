@@ -1,0 +1,15 @@
+@import "../../styles/libs/mixins", "../../styles/libs/adaptive",
+  "../../styles/libs/veriables";
+
+.root {
+  @include button;
+  font-size: 17px;
+  @include flex-center-center;
+  gap: 20px;
+
+  &:hover {
+    svg {
+      stroke: $color-black-18;
+    }
+  }
+}

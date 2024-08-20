@@ -1,0 +1,9 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+
+.root {
+  @include flex-column;
+  gap: 15px;
+  &__input {
+  }
+}

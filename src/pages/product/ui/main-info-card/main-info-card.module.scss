@@ -1,0 +1,76 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+
+.root {
+  @include flex-center-between;
+  gap: 60px;
+  margin-bottom: 50px;
+
+  @include _1000 {
+    @include flex-column;
+  }
+  img {
+    max-width: 400px;
+    transition: all 0.5s;
+    margin: 0 auto;
+    &:hover {
+      scale: (1.2);
+    }
+  }
+  &__info {
+    @include flex-column;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    gap: 28px;
+    max-width: 800px;
+  }
+
+  &__rating {
+    @include flex-center;
+    gap: 15px;
+    $colorValue: rgb(92, 210, 92);
+    width: max-content;
+    height: max-content;
+    p {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &__value {
+      font-size: 27px;
+      font-weight: 700;
+      color: $colorValue;
+    }
+  }
+
+  &__bottom {
+    @include flex-center-center;
+
+    gap: 100px;
+
+    a {
+      display: block;
+      @include button(
+        $color-main,
+        $color-black-18,
+        $color-black-18,
+        $color-main
+      );
+      width: max-content;
+
+      border-color: $color-gray-a1;
+    }
+  }
+
+  &__fix {
+    svg {
+      margin-left: 20px;
+    }
+    &:hover {
+      svg {
+        fill: $color-main;
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+.root {
+  padding-inline: 40px;
+
+  @include _460 {
+    padding-inline: 15px;
+  }
+
+  &__title_block {
+    @include _1000 {
+      text-align: center;
+    }
+    p {
+      @include authDiscription;
+      @include _560 {
+        font-size: 15px;
+      }
+    }
+  }
+  .block {
+    min-height: 72px;
+    margin-bottom: 17px;
+  }
+
+  // .input__group {
+  //   position: relative;
+
+  //   input {
+  //     width: 100%;
+  //     box-sizing: border-box;
+  //     @include _460 {
+  //       font-size: 16px;
+  //     }
+
+  //     &:focus + svg {
+  //       stroke: $color-black-39;
+  //     }
+
+  //     &:is(.invalid) + svg {
+  //       stroke: $red-ec;
+  //     }
+  //     &:not(:focus) + svg {
+  //       stroke: $color-gray-a1;
+  //     }
+  //   }
+  //   svg {
+  //     width: $widthSvg;
+  //     top: 50%;
+  //     transform: translateY(-50%);
+  //     position: absolute;
+  //     cursor: pointer;
+  //     left: calc(100% - 2.6rem);
+  //   }
+
+  //   // &--password {
+  //   //   position: relative;
+  //   //   .icon {
+  //   //     position: absolute;
+  //   //     left: calc(100% - 2.6rem);
+  //   //     top: 50%;
+  //   //     transform: translateY(-50%);
+  //   //   }
+
+  //   //   .icon::after {
+  //   //     display: block;
+  //   //     content: "😳";
+  //   //     font-size: 1.5rem;
+  //   //   }
+
+  //   //   input:valid + .icon::after {
+  //   //     content: "🥳";
+  //   //   }
+  //   // }
+  // }
+}

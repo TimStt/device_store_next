@@ -1,0 +1,56 @@
+@import "../../../../styles/libs/mixins", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/veriables";
+.root {
+  @include flex-column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  &__image_block img {
+    display: block;
+    margin: 0 auto;
+    margin-block: 30px;
+    width: auto;
+  }
+
+  &__image_block {
+    @include _710 {
+      @include flex-column;
+      gap: 10px;
+    }
+    label {
+      margin-right: 30px;
+    }
+  }
+
+  &__label_description {
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  &__field {
+    max-width: 600px;
+    width: 100%;
+
+    &.description {
+      overflow: hidden;
+      height: 200px;
+    }
+  }
+
+  &__field_description {
+    height: 300px;
+  }
+
+  &__actions {
+    @include flex-center-between;
+    width: 100%;
+    max-width: 600px;
+
+    a {
+      @include button;
+      font-size: 17px;
+    }
+  }
+  /* margin: auto; */
+}

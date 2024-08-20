@@ -1,35 +1,35 @@
-import React, { useEffect, useRef, useState } from "react";
-import style from "./_header.module.scss";
+import React from "react";
+import style from "./header.module.scss";
 import Image from "next/image";
-import { CircleUserRound, Menu, ShoppingBasket } from "lucide-react";
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useSelector } from "react-redux";
-import { selectBasket } from "@/src/redux/slice/basketSlice";
-import Profile from "@/pages/profile";
-import ProfileItem from "../ProfileItem";
-
-import MenuNav from "../MenuNav";
+import { useSession } from "next-auth/react";
+import ProfileItem from "@/components/header/ui/profile-item";
+import MenuNav from "./ui/menu-nav";
+import cls from "classnames";
+import { paths } from "@/shared/config/paths";
+import { useGetProductsBasket } from "@/shared/hooks/use-get-product-basket";
 
 const Header: React.FC = () => {
   const { data: session } = useSession();
-
+  useGetProductsBasket();
   return (
-    <header className={style.root}>
-      <div className="container">
-        <div className={style.wrapper}>
-          <Link href="/">
-            <div className={style.logo}>
-              <Image src="/logo.svg" alt="sdsds" width={60} height={60} />
-              <div>
-                <h3>Comrade</h3>
-                <span>Лучшие продукты - здесь</span>
-              </div>
+    <header className={cls(style.root, "container")}>
+      <div className={style.root__wrapper}>
+        <Link href={paths.home}>
+          <div className={style.root__logo}>
+            <Image src="/logo.svg" alt="sdsds" width={60} height={60} />
+            <div>
+              <h3>Comrade</h3>
+              <span>Лучшие продукты - здесь</span>
             </div>
-          </Link>
+          </div>
+        </Link>
 
-          {session ? <MenuNav /> : <ProfileItem text="Войти" href="/login" />}
-        </div>
+        {session ? (
+          <MenuNav />
+        ) : (
+          <ProfileItem text="Войти" href={paths.login} />
+        )}
       </div>
     </header>
   );

@@ -1,39 +1,39 @@
 import { AppProps } from "next/app";
-import React from "react";
-import Layout from "../src/components/LayoutMain";
-import "../src/styles/app.scss";
+import React, { ElementType } from "react";
+import Layout from "@/components/layout-main";
+import "@/styles/index.scss";
 
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
-import { persistor, store } from "../src/redux/store";
-import { PersistGate } from "redux-persist/integration/react";
+import { wrapper } from "@/redux/store";
+import { Toaster } from "react-hot-toast";
+import { AnimatePresence } from "framer-motion";
+import { nanoid } from "@reduxjs/toolkit";
+import { useRouter } from "next/router";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const pathName = usePathname();
+  const router = useRouter();
 
-  const loginLayout = () => {
-    return (
-      <main>
-        <Component {...pageProps} />
-      </main>
-    );
-  };
-  const mainLayout = () => {
-    return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    );
-  };
+  const DEFOULT_LAYOUT: ElementType = Layout;
+  const LayoutMain =
+    pathName === "/login" || pathName === "/register" ? "main" : DEFOULT_LAYOUT;
+
+  const { store, props } = wrapper.useWrappedStore(pageProps);
   return (
     <SessionProvider session={pageProps.session}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          {pathName === "/login" || pathName === "/register"
-            ? loginLayout()
-            : mainLayout()}
-        </PersistGate>
+        <LayoutMain>
+          <AnimatePresence
+            mode="wait"
+            initial={true}
+            onExitComplete={() => window.scrollTo(0, 0)}
+          >
+            <Toaster position="top-center" reverseOrder={false} />
+            <Component {...props.pageProps} key={router.asPath} />
+          </AnimatePresence>
+        </LayoutMain>
       </Provider>
     </SessionProvider>
   );

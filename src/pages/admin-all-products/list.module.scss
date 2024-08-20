@@ -1,0 +1,29 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+
+.root {
+  @include flex-column;
+  gap: 40px;
+  margin-block: 40px;
+  position: relative;
+
+  &.loading {
+    min-height: calc(100vh / 2 - $height-header);
+  }
+
+  @include _710 {
+    align-items: center;
+  }
+
+  &__pagination {
+    margin: 0 auto;
+  }
+
+  &__spinner {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

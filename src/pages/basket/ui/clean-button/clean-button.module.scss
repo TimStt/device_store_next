@@ -1,0 +1,23 @@
+@import "../../../../styles/libs/mixins", "../../../../styles/libs/veriables",
+  "../../../../styles/libs/adaptive";
+.root {
+  @include flex-center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  span {
+    font-size: 18px;
+    color: $red-ec;
+  }
+
+  transition-duration: $duration;
+  transition-property: background-color;
+
+  &:hover,
+  &:active {
+    background-color: rgb(235, 230, 230);
+  }
+}

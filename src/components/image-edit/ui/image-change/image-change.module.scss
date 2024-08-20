@@ -1,0 +1,12 @@
+.root {
+  width: 100%;
+  object-fit: contain;
+  margin: auto;
+  margin-bottom: 72px;
+  height: 500px;
+
+  @media (max-width: 570px) {
+    height: 400px;
+    margin-bottom: 50px;
+  }
+}

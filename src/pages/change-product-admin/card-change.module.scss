@@ -1,0 +1,16 @@
+@import "../../styles/libs/mixins", "../../styles/libs/adaptive",
+  "../../styles/libs/veriables";
+.root {
+  margin-block: 48px 98px;
+  &__blocks {
+    @include flex-column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  &__return {
+    @include button;
+    font-size: 17px;
+  }
+}

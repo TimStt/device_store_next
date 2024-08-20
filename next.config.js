@@ -3,7 +3,7 @@ const path = require("path");
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, "./src/styles")],
+    includePaths: [path.join(__dirname, "./src/styles/index.scss")],
   },
   images: {
     remotePatterns: [
@@ -13,7 +13,35 @@ const nextConfig = {
         port: "",
         pathname: "/img/**",
       },
+
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/**",
+      },
+
+      {
+        protocol: "https",
+        hostname: "cloudflare-ipfs.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [{ loader: "@svgr/webpack", options: { icon: true } }],
+    });
+    return config;
   },
 };
 

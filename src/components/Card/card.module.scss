@@ -1,0 +1,48 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+
+.root {
+  @include flex-center-between;
+  flex-direction: column;
+  max-width: 280px;
+  width: 100%;
+  border-radius: 40px;
+  border: 1px solid #f3f3f3;
+  padding: 30px 20px 20px;
+  transition: all 0.5s;
+  text-align: center;
+
+  img {
+    transition: all 0.5s;
+    width: 100%;
+  }
+
+  &:hover {
+    transform: scale(1.035, 1.035);
+    box-shadow: 0 15px 30px rgba(55, 55, 55, 0.5);
+    img {
+      transform: translateY(-10px);
+    }
+  }
+
+  h2 {
+    margin-block: 20px;
+    font-weight: 500;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    box-orient: vertical;
+    line-height: 1.3em;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &__bottom {
+    margin-block: 20px;
+    @include flex-center-between;
+    width: 100%;
+  }
+}

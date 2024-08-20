@@ -1,0 +1,19 @@
+@import "../../../styles/libs/_veriables.scss";
+
+.root {
+  --boxShadowModal: 0 32px 32px 0 rgba(0, 0, 0, 0.2),
+    0 0 32px 0 rgba(0, 0, 0, 0.1);
+
+  transition-property: top, left, transform;
+  transition-duration: $duration;
+
+  background: $color-main;
+  display: block;
+
+  border: none;
+
+  &::backdrop {
+    opacity: 0.9;
+    background-color: rgb(9, 9, 22);
+  }
+}

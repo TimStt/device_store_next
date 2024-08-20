@@ -1,0 +1,11 @@
+@import "../../styles/libs/veriables", "../../styles/libs/mixins";
+.root {
+  margin-block: 50px 40px;
+  .basket__top {
+    .cleanBusket {
+      @include flex-center;
+      gap: 5px;
+      margin-left: auto;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@import " ../../../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+.root {
+  @include flex-center-center;
+  gap: 40px;
+  margin-block: 70px;
+
+  .link {
+    border: 1px solid $color-gray-a1;
+    border-radius: 20px;
+    padding: 30px;
+    @include flex-center-center;
+    gap: 10px;
+    a {
+      font-size: 21px;
+      font-weight: 600;
+    }
+  }
+}

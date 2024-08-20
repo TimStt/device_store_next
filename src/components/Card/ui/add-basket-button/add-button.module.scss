@@ -1,0 +1,24 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+.root {
+  padding: 4px;
+  @include flex-center;
+  gap: 10px;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  font-size: 20px;
+
+  transition: all 0.5s ease-in-out;
+
+  svg {
+    display: block;
+  }
+
+  &:hover {
+    background-color: $color-black-18;
+    color: $color-main;
+    svg {
+      fill: $color-main;
+    }
+  }
+}

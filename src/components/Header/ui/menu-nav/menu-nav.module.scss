@@ -1,0 +1,28 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+
+.root {
+  @include flex-center-between;
+  gap: 30px;
+
+  @include less_660 {
+    display: none;
+  }
+
+  a {
+    @include flex-center-between;
+    gap: 15px;
+  }
+  span {
+    font-size: 17px;
+    font-weight: 400;
+    color: $color-black-18;
+  }
+
+  &__image_user {
+    border-radius: 50%;
+
+    width: 30px;
+    height: 30px;
+  }
+}

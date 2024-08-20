@@ -1,0 +1,67 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+
+.root {
+  width: 100%;
+  padding-block: 35px;
+  background-color: $color-black-18;
+  $colorFontFooter: rgb(227, 227, 227);
+  color: $colorFontFooter;
+
+  &__logo {
+    @include logo;
+    a {
+      @include flex-center-between;
+      gap: 20px;
+    }
+    h2 {
+      color: $color-main;
+    }
+  }
+  &__blocks {
+    @include flex-center-between;
+    gap: 29px;
+
+    @include less_660 {
+      gap: 58px;
+    }
+
+    flex-wrap: wrap;
+  }
+  &__contacts {
+    @include flex-column;
+    align-items: center;
+    gap: 30px;
+    figure {
+      display: flex;
+      gap: 15px;
+    }
+  }
+
+  &__address {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  &__private {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  &__nav,
+  &__contacts,
+  &__logo {
+    margin: auto;
+  }
+  &__nav {
+    ul:first-child {
+      font-weight: 600;
+    }
+    li + li {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+}

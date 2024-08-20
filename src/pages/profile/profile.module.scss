@@ -1,0 +1,10 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+.root {
+  &__signOut {
+    @include button($red-ec, $color-main, $color-main, $color-black-39);
+    border: 1px solid $red-ec !important;
+
+    font-size: 15px;
+  }
+}

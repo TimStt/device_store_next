@@ -1,0 +1,39 @@
+@import "../../../../styles/libs/veriables", "../../../../styles/libs/adaptive",
+  "../../../../styles/libs/mixins";
+
+.root {
+  &__group_btns {
+    @include flex-column;
+    margin-bottom: 32px;
+
+    --paddingTopButton: 6px;
+    --widthSvg: 23px;
+    gap: 18px;
+    button {
+      font-weight: 600;
+      width: 100%;
+      transition-duration: $duration;
+      transition-property: background-color, color;
+      border-radius: 15px;
+      border-width: 2px;
+      font-size: 16px;
+      letter-spacing: 0.54px;
+
+      &:disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .notRegister {
+    @include authDiscription;
+    margin-block: 0px;
+
+    a {
+      color: $blue-notRegister;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@mixin flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-center {
+  display: flex;
+
+  align-items: center;
+}
+@mixin flex-column {
+  display: flex;
+
+  flex-direction: column;
+}
+
+@mixin logo {
+  @include flex-center-between;
+  gap: 20px;
+  span {
+    color: gray;
+  }
+  h2 {
+    font-size: 20px;
+    margin-bottom: 4px;
+    font-weight: 700;
+    color: black;
+    text-transform: uppercase;
+  }
+}
+
+@mixin button(
+  $background-color: #353434,
+  $background-color-hover: $color-main,
+  $font-color: white,
+  $font-color-hover: $color-black-18
+) {
+  border-radius: 10px;
+  padding: 12px 20px;
+
+  cursor: pointer;
+  background: $background-color;
+  color: $font-color;
+  border: 1px solid $color-black-18;
+  transition: all 0.4s;
+  &:hover {
+    background: $background-color-hover;
+    color: $font-color-hover;
+  }
+}
+
+@mixin authDiscription {
+  color: $color-gray-a1;
+  margin-block: 15px 30px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+@mixin activeItemMenuMob {
+  span {
+    color: $blue-active-item;
+  }
+
+  svg {
+    stroke: $blue-active-item;
+  }
+}
+
+@mixin color($color) {
+  border-color: $color;
+}
+@mixin flex-gap($gap: 10) {
+  display: flex;
+  gap: #{$gap};
+}

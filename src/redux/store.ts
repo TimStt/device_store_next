@@ -1,48 +1,51 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import products from "./slice/productInfoSlice";
-import changeProducts from "./slice/productChangeSlice";
-import basket from "./slice/basketSlice";
-import storage from "redux-persist/lib/storage";
 import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-  persistReducer,
-  persistStore,
-} from "redux-persist";
-import storageSession from "redux-persist/lib/storage/session";
-
-// ...
-
-const parsisConfig = {
-  key: "root",
-  storage: storageSession,
-};
+  configureStore,
+  combineReducers,
+  Action,
+  ThunkAction,
+} from "@reduxjs/toolkit";
+import productsActions from "./slices/product-actions-slice";
+import listDevicesAdmin from "./slices/list-devices-admin-slice";
+import basket from "./slices/basket-slice";
+import changeDevice from "./slices/change-device-slice";
+import { createWrapper } from "next-redux-wrapper";
+import catalog from "./slices/catalog-slice";
+import personalProduct from "./slices/personal-product-slice";
+import user from "./slices/user-slice";
+import mobileMenuModal from "./slices/mobile-menu-modal";
 
 const reducer = combineReducers({
-  products,
-  changeProducts,
+  productsActions,
+  listDevicesAdmin,
   basket,
+  changeDevice,
+  catalog,
+  personalProduct,
+  user,
+
+  mobileMenuModal,
 });
 
-const parsisReducer = persistReducer(parsisConfig, reducer);
+export const makeStore = () => {
+  const store = configureStore({
+    reducer: reducer,
+    devTools: process.env.NODE_ENV !== "production",
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
+  });
+  return store;
+};
 
-export const store = configureStore({
-  reducer: parsisReducer,
-  devTools: process.env.NODE_ENV !== "production",
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-});
-export const persistor = persistStore(store);
+export type Store = ReturnType<typeof makeStore>;
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = Store["dispatch"];
+export type RootState = ReturnType<Store["getState"]>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+export const wrapper = createWrapper(makeStore, { debug: true });

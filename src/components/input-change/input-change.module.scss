@@ -1,0 +1,14 @@
+@import "../../styles/libs/veriables", "../../styles/libs/adaptive",
+  "../../styles/libs/mixins";
+
+.root {
+  &__block {
+    transition-property: height;
+    transition-duration: 0.3s;
+  }
+
+  &__label {
+    display: inline-block;
+    margin-bottom: 7px;
+  }
+}
