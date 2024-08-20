@@ -6,9 +6,14 @@
   gap: 40px;
   margin-block: 40px;
   position: relative;
-
+  transition-duration: $duration;
+  min-height: 100%;
+  transition-property: min-height;
+  min-height: calc(100vh - $height-header * 2);
   &.loading {
-    min-height: calc(100vh / 2 - $height-header);
+    justify-content: center;
+    /* animation: unset; */
+    align-items: center;
   }
 
   @include _710 {
@@ -17,13 +22,5 @@
 
   &__pagination {
     margin: 0 auto;
-  }
-
-  &__spinner {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }
