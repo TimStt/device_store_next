@@ -37,9 +37,7 @@ h1 {
   font-size: $font-size-h1;
   line-height: 3rem;
   @include _1000 {
-    font-size: calc(
-      28px + (38 - 20) * ((100vw - 320px) / (1000 - 320))
-    ) !important;
+    @include fluid-text(48, 34);
   }
 }
 h2 {

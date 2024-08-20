@@ -26,24 +26,29 @@ const MenuNav: React.FC = () => {
           <ShoppingBasket color="#9B9B9B" size={26} />
           <span>{totalCount ? <b>{totalCount}</b> : "Корзина"}</span>
         </Link>
-        {imageUser ? (
-          <ProfileItem
-            text={nameUser?.split(" ")[0] || "Профиль"}
-            href={paths.profile}
-          >
-            {" "}
-            <Image
-              className={style.root__image_user}
-              src={imageUser}
-              alt={nameUser || "user"}
-              width={30}
-              height={30}
-            />
-          </ProfileItem>
+
+        {session ? (
+          imageUser ? (
+            <ProfileItem
+              text={nameUser?.split(" ")[0] || "Профиль"}
+              href={paths.profile}
+            >
+              {" "}
+              <Image
+                className={style.root__image_user}
+                src={imageUser}
+                alt={nameUser || "user"}
+                width={30}
+                height={30}
+              />
+            </ProfileItem>
+          ) : (
+            <ProfileItem text="Профиль" href={paths.profile}>
+              <CircleUserRound color="#9B9B9B" size={26} />
+            </ProfileItem>
+          )
         ) : (
-          <ProfileItem text="Профиль" href={paths.profile}>
-            <CircleUserRound color="#9B9B9B" size={26} />
-          </ProfileItem>
+          <ProfileItem text="Войти" href={paths.login} />
         )}
       </nav>
     </>

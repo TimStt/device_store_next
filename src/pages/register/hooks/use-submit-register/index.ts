@@ -4,6 +4,7 @@ import { onDisplayResultsAuth } from "@/shared/utils/on-display-result-auth";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useFormikRegister } from "../use-formik-auth";
+import { paths } from "@/shared/config/paths";
 
 export const useSubmitRegister = () => {
   const [isLoading, setLoading] = useState(false);
@@ -17,15 +18,18 @@ export const useSubmitRegister = () => {
       setLoading,
     });
 
+    const hasError = typeof res === "string";
+    console.log("hasError", hasError);
     onDisplayResultsAuth({
       result: {
         ok: !!res,
-        error: typeof res === "string" && res,
-        url: "/login",
+        error: hasError && res,
       },
-      router,
+
       textSuccessfullyToast: "Вы успешно зарегистрировались в системе",
     });
+
+    !hasError && router.push(paths.login);
   };
 
   return {

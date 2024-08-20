@@ -1,0 +1,36 @@
+@import "../../../../../../styles/libs/veriables",
+  "../../../../../../styles/libs/adaptive",
+  "../../../../../../styles/libs/mixins";
+.root {
+  margin: auto;
+  @include flex-column;
+  justify-content: center;
+  gap: 30px;
+  min-height: 100vh;
+  position: relative;
+  align-items: center;
+
+  &__item {
+    transition-property: background-color;
+    transition-duration: $duration;
+    border-radius: 10px;
+    a,
+    button {
+      display: flex;
+      gap: 20px;
+      cursor: pointer;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    span {
+      font-size: 17px;
+      font-weight: 400;
+      color: $color-black-18;
+    }
+    &:hover,
+    &:active {
+      background-color: #ebe6e6;
+    }
+  }
+}

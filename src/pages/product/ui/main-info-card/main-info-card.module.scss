@@ -9,8 +9,9 @@
   @include _1000 {
     @include flex-column;
   }
+
   img {
-    max-width: 400px;
+    max-width: 353px;
     transition: all 0.5s;
     margin: 0 auto;
     &:hover {
@@ -46,6 +47,9 @@
 
   &__bottom {
     @include flex-center-center;
+    @media (max-width: 850px) {
+      flex-direction: column-reverse;
+    }
 
     gap: 100px;
 

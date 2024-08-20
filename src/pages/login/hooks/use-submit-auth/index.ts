@@ -22,17 +22,17 @@ export const useSubmitAuth = () => {
       setLoading: setLoadingCredentials,
     });
 
-    console.log("resultSignIn", resultSignIn);
-
-    if (resultSignIn)
+    if (resultSignIn) {
+      console.log("resultSignIn", resultSignIn);
       onDisplayResultsAuth({
         result: {
           ok: resultSignIn.ok,
-          error: resultSignIn.error ?? false,
+          error: resultSignIn.error || false,
         },
-        router,
         textSuccessfullyToast,
       });
+      resultSignIn.ok && router.push(resultSignIn.url as string);
+    }
   };
 
   const onSubmitWithProviders = async (provider: TProviders) => {
@@ -47,7 +47,7 @@ export const useSubmitAuth = () => {
           ok: resultSignIn.ok,
           error: resultSignIn.error ?? false,
         },
-        router,
+
         textSuccessfullyToast,
       });
   };

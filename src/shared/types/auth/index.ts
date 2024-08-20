@@ -78,6 +78,6 @@ export type TResultAuth = {
 
 export interface IOnDisplayResults {
   result: TResultAuth;
-  router: NextRouter;
+
   textSuccessfullyToast: string;
 }

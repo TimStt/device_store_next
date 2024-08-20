@@ -10,7 +10,7 @@ const AddBasketButton: React.FC<IPropsDevice> = ({ device }) => {
   const { handlerAdd } = useAddProductBasket();
   const busketProduct = useSelector(selectProductById(device?.id));
   return (
-    <button className={style.addBtn} onClick={() => handlerAdd(device)}>
+    <button className={style.root} onClick={() => handlerAdd(device)}>
       <Plus size={30} color="#D3D3D3" />
       {busketProduct?.count}
     </button>

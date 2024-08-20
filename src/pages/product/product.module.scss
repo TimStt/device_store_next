@@ -3,6 +3,7 @@
 .root {
   @include flex-center-center;
   // height: calc((100vh) - $height-header);
+  margin-block: 72px 180px;
   flex-direction: column;
   position: relative;
   @include _1000 {

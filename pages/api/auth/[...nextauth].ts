@@ -29,7 +29,8 @@ export default NextAuth({
       credentials: {},
       async authorize(credentials: any) {
         try {
-          const { data: users } = await apiInstance.get<IUser[]>(`/users`);
+          const API_AURL = process.env.NEXT_PUBLIC_API_URL_USERS;
+          const { data: users } = await axios.get<IUser[]>(`${API_AURL}/users`);
 
           //  проверяем, зарегистрирован ли пользователь
           const findUser = users.find(

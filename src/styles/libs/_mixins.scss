@@ -79,3 +79,7 @@
   display: flex;
   gap: #{$gap};
 }
+
+@mixin fluid-text($max: 48, $min: 16, $property: font-size) {
+  #{$property}: clamp(#{$min}px, #{$max / 1527 * 100}vw, #{$max}px);
+}

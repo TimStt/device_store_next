@@ -25,11 +25,7 @@ const Header: React.FC = () => {
           </div>
         </Link>
 
-        {session ? (
-          <MenuNav />
-        ) : (
-          <ProfileItem text="Войти" href={paths.login} />
-        )}
+        <MenuNav />
       </div>
     </header>
   );

@@ -17,6 +17,7 @@ import { selectMobileMenuModal } from "@/redux/selectors/mobile-modal";
 import { setStateModalMobileMenu } from "@/redux/slices/mobile-menu-modal";
 import { nanoid } from "@reduxjs/toolkit";
 import MobileMenuButton from "../mobile-menu-button";
+import ListMenuModal from "./ui/list-menu-modal";
 
 const MenuMobile: React.FC = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -27,7 +28,7 @@ const MenuMobile: React.FC = () => {
     isOpen,
     setState: setStateModalMobileMenu,
   });
-  const dispatch = useDispatch();
+
   return (
     <>
       <ModalMotion className={style.root} ref={modalRef} state={isOpen}>
@@ -37,26 +38,7 @@ const MenuMobile: React.FC = () => {
             icon={<X />}
             text="Закрыть мобильное меню"
           />
-          <ul className={style.root__list}>
-            {menu_mobil.map(({ href, text, icon }) => (
-              <li className={style.root__list__item} key={href}>
-                <Link
-                  href={href}
-                  onClick={() => dispatch(setStateModalMobileMenu(false))}
-                >
-                  {icon}
-                  <span>{text}</span>
-                </Link>
-              </li>
-            ))}
-
-            <li className={style.root__list__item}>
-              <button onClick={() => signOut()}>
-                <LogOut />
-                <span>Выйти </span>
-              </button>
-            </li>
-          </ul>
+          <ListMenuModal />
         </div>
       </ModalMotion>
     </>

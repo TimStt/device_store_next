@@ -24,7 +24,9 @@ export const useDeleteProductBasket = () => {
           ? {
               ...product,
               count: --countChoosen,
-              totalPrice: totalPriceChoosen - choosenProduct.price,
+              totalPrice: +(totalPriceChoosen - choosenProduct.price).toFixed(
+                2
+              ),
             }
           : product
       );

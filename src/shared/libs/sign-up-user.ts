@@ -7,7 +7,7 @@ const signup = async ({
   password,
   username,
 }: IUserFormik): Promise<IUserFormik | string> => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL! + "/users";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL_USERS! + "/users";
 
   try {
     const { data: users } = await axios.get<IUser[]>(`${apiUrl}`);

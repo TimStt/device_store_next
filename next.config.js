@@ -30,7 +30,7 @@ const nextConfig = {
 
       {
         protocol: "https",
-        hostname: "cloudflare-ipfs.com",
+        hostname: "loremflickr.com",
         port: "",
         pathname: "/**",
       },

@@ -2,11 +2,12 @@
   "../../../../styles/libs/mixins";
 .root {
   padding: 4px;
-  @include flex-center;
+  @include flex-center-center;
   gap: 10px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;
   font-size: 20px;
+  cursor: pointer;
 
   transition: all 0.5s ease-in-out;
 
