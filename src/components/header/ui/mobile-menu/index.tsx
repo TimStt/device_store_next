@@ -6,16 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 
 import cls from "classnames";
-import ProfileItem from "../profile-item";
+
 import React from "react";
 import { menu_mobil } from "./menu-items.data";
 import { selectTotalCount } from "@/redux/selectors/basket";
 import { useTriggerActionsModal } from "@/shared/hooks/use-trigger-actions-modal";
 import { ModalMotion } from "@/shared/ui/modal-motion";
-import MobileMenuButton from "../mobile-menu-button";
+
 import { selectMobileMenuModal } from "@/redux/selectors/mobile-modal";
 import { setStateModalMobileMenu } from "@/redux/slices/mobile-menu-modal";
 import { nanoid } from "@reduxjs/toolkit";
+import MobileMenuButton from "../mobile-menu-button";
 
 const MenuMobile: React.FC = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
