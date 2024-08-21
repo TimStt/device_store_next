@@ -1,5 +1,5 @@
 import axios from "axios";
-import { hash } from "bcryptjs";
+import { compare, hash } from "bcryptjs";
 import { IUser, IUserFormik } from "../types/auth";
 
 const signup = async ({
@@ -12,7 +12,10 @@ const signup = async ({
   try {
     const { data: users } = await axios.get<IUser[]>(`${apiUrl}`);
 
-    const checkDuplicate = users.find((user) => user.email === email);
+    const checkDuplicate = users.find(
+      async (user) =>
+        user.email === email || (await compare(password, user.password))
+    );
 
     if (checkDuplicate) return "Такой пользователь есть!";
 

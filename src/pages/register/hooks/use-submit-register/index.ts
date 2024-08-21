@@ -19,11 +19,11 @@ export const useSubmitRegister = () => {
     });
 
     const hasError = typeof res === "string";
-    console.log("hasError", hasError);
+    console.log("hasError", res);
     onDisplayResultsAuth({
       result: {
-        ok: !!res,
-        error: hasError && res,
+        ok: !!res && !hasError,
+        error: (hasError && res) || false,
       },
 
       textSuccessfullyToast: "Вы успешно зарегистрировались в системе",

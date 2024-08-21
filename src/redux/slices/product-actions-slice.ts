@@ -85,6 +85,7 @@ export const productActionsSlice = createSlice({
       })
       .addCase(productAddThunk.fulfilled, (state) => {
         state.addLoading = false;
+        toast.success("Продукт добавлен успешно");
       })
       .addCase(productAddThunk.pending, (state) => {
         state.addLoading = true;

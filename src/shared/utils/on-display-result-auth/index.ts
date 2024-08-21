@@ -11,5 +11,5 @@ export const onDisplayResultsAuth = ({
     return;
   }
 
-  toast.error("Ошибка авторизации. Попробуйте еще раз");
+  toast.error(result.error as string);
 };

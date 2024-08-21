@@ -25,16 +25,16 @@ const MainInfoCard = ({ device }: IMainInfoCardProps) => {
           height={100}
         />
         <div className={style.root__info}>
-          <h1>{device.title}</h1>
-          <p>{device.description}</p>
+          <h1 className={style.root__title}>{device.title}</h1>
+          <p className={style.root__description}>{device.description}</p>
 
-          <span>
+          <span className={style.root__rating}>
             {" "}
             Оценка:
             <span className={style.root__rating__value}> {rate}</span>
           </span>
 
-          <span>Купили: {countBuy} раз</span>
+          <span className={style.root__buy}>Купили: {countBuy} раз</span>
         </div>
       </div>
       <div className={style.root__bottom}>

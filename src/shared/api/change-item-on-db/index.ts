@@ -8,9 +8,8 @@ export const changeItemOnDb = async (
 ) => {
   try {
     const { data: result } = await apiInstance.put(`/products/${id}`, product);
-
-    toast.success("Продукт изменен успешно");
     return result;
+    toast.success("Продукт изменен успешно");
   } catch (error) {
     console.error((error as Error).message);
     return null;
