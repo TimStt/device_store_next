@@ -7,7 +7,7 @@ export const getOneDevice = async (id: string) => {
       `/products/${id}`
     );
 
-    return Object(device) ? device : null;
+    return device;
   } catch (error) {
     console.log((error as Error).message);
   }

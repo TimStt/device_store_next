@@ -65,7 +65,7 @@ export const productActionsSlice = createSlice({
       )
 
       .addCase(getOneProductThunk.fulfilled, (state, action) => {
-        state.product = action.payload;
+        state.product = action.payload as IDevicesTypes;
 
         state.getLoading = false;
       })
