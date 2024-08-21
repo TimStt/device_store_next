@@ -3,13 +3,20 @@
 
 .root {
   @include flex-center-center;
-  .blocks {
+  margin-block: 48px 98px;
+
+  &__image {
+    max-width: 400px;
+    width: 100%;
+    height: 100%;
+  }
+  &__blocks {
     @include flex-column;
     gap: 30px;
     align-items: center;
   }
 
-  .btnBack {
+  &__btnBack {
     @include button;
     font-size: 16px;
     padding: 20px;
