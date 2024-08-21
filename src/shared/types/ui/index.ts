@@ -82,14 +82,20 @@ export interface IPropsDevices {
 export interface IPropsDevice {
   device: IDevicesTypes;
 }
-export interface TAsideActionsDevice extends IMainInfoCardProps {
+export interface TAsideActionsDevice {
   session: Session | null;
+  device: IDevicesWithImagePlaceholder;
 }
 
-export type IMainInfoCardProps = IPropsDevice;
-
 export interface IPersonalProductState {
-  device: IDevicesTypes | null;
+  device: IDevicesWithImagePlaceholder | null;
+}
+export interface IDevicesWithImagePlaceholder
+  extends Omit<IDevicesTypes, "image"> {
+  image: {
+    src: string;
+    placeholder: string;
+  };
 }
 
 export interface IProfileItemProps {

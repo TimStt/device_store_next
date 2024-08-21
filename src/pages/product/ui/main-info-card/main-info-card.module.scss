@@ -11,9 +11,11 @@
   }
 
   img {
-    max-width: 353px;
     transition: all 0.5s;
     margin: 0 auto;
+
+    object-fit: contain;
+
     &:hover {
       scale: (1.2);
     }

@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
 
-import { IPersonalProductState } from "@/shared/types/ui";
+import {
+  IDevicesWithImagePlaceholder,
+  IPersonalProductState,
+} from "@/shared/types/ui";
 import { IDevicesTypes } from "@/shared/types/products";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -15,7 +18,7 @@ export const personalProductSlice = createSlice({
   reducers: {
     setPersonalProducts: (
       state,
-      action: PayloadAction<IDevicesTypes | null>
+      action: PayloadAction<IDevicesWithImagePlaceholder | null>
     ) => {
       state.device = action.payload;
     },

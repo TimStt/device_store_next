@@ -13,6 +13,7 @@ import {
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import axios from "axios";
+import { HYDRATE } from "next-redux-wrapper";
 import toast from "react-hot-toast";
 
 export const getOneProductThunk = createAsyncThunk(
@@ -54,6 +55,15 @@ export const productActionsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
+        HYDRATE,
+        (state, { payload }) => {
+          if (payload.productsActions) {
+            state.getLoading = payload.productsActions.getLoading;
+          }
+        }
+      )
+
       .addCase(getOneProductThunk.fulfilled, (state, action) => {
         state.product = action.payload;
 

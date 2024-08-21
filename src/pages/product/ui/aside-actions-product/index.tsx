@@ -10,6 +10,8 @@ import { useDeleteProductBasket } from "@/shared/hooks/use-delete-product-basket
 import { selectProductById } from "@/redux/selectors/basket";
 
 const AsideActionsProduct = ({ device, session }: TAsideActionsDevice) => {
+  const { image, ...otherDeviceInfo } = device;
+
   const { handlerAdd } = useAddProductBasket();
   const { handlerDelete } = useDeleteProductBasket();
   const deviceInBasket = useSelector(selectProductById(device.id));
@@ -28,12 +30,29 @@ const AsideActionsProduct = ({ device, session }: TAsideActionsDevice) => {
               <Minus />
             </button>
             <b>{deviceInBasket.count}</b>
-            <button onClick={() => handlerAdd(device)} type="button">
+            <button
+              onClick={() =>
+                handlerAdd({
+                  ...otherDeviceInfo,
+                  image: image.src,
+                })
+              }
+              type="button"
+            >
               <Plus />
             </button>
           </div>
         ) : (
-          <button onClick={() => handlerAdd(device)}>Добавить в корзину</button>
+          <button
+            onClick={() =>
+              handlerAdd({
+                ...otherDeviceInfo,
+                image: image.src,
+              })
+            }
+          >
+            Добавить в корзину
+          </button>
         ))}
     </div>
   );

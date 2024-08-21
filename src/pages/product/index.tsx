@@ -9,11 +9,11 @@ import { selectorPersonalProducts } from "@/redux/selectors/personal-product";
 import Spinner from "@/shared/ui/spinner";
 import MainInfoCard from "./ui/main-info-card";
 import EmptyPage from "@/components/empty-page";
+import { useRouter } from "next/router";
 
 const Product: React.FC = () => {
-  const { data: session } = useSession();
   const device = useSelector(selectorPersonalProducts);
-
+  const id = useRouter().query.id as string;
   const loading = useSelector(selectorGetLoading);
 
   return (
@@ -22,21 +22,7 @@ const Product: React.FC = () => {
         [style.loading]: loading,
       })}
     >
-      {loading ? (
-        <Spinner className={style.root__spinner} size={100} />
-      ) : (
-        <>
-          {device ? (
-            <MainInfoCard device={device} />
-          ) : (
-            <EmptyPage
-              title={"Товар не найден"}
-              image={"/empty.jpg"}
-              backLink={"home"}
-            />
-          )}
-        </>
-      )}
+      <MainInfoCard />
     </article>
   );
 };

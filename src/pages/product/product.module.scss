@@ -11,7 +11,7 @@
   }
 
   &.loading {
-    height: calc((100vh) - $height-header - 100px);
+    height: calc((100vh / 2));
   }
 
   &__spinner {
