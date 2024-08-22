@@ -13,8 +13,7 @@ const signup = async ({
     const { data: users } = await axios.get<IUser[]>(`${apiUrl}`);
 
     const checkDuplicate = users.find(
-      async (user) =>
-        user.email === email || (await compare(password, user.password))
+      (user) => user.email === email || user.username === username
     );
 
     if (checkDuplicate) return "Такой пользователь есть!";

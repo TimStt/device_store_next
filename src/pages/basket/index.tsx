@@ -19,7 +19,7 @@ function Basket() {
     );
   return (
     <section className={cls(style.root, "container")}>
-      <div className={style.basket__top}>
+      <div className={style.root__top}>
         <CleanButton />
       </div>
 
